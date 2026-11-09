@@ -8,7 +8,7 @@ const FOOTER_CITIES = ["Zagreb", "Split", "Rijeka", "Osijek", "Zadar", "Varaždi
 
 export function Footer() {
   return (
-    <footer className="mt-16 rounded-t-[28px] bg-board text-chalk">
+    <footer className="mt-16 bg-board text-chalk">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 text-sm sm:grid-cols-3">
         <div>
           <p className="font-bold text-chalk">{SITE_NAME}</p>
@@ -27,7 +27,7 @@ export function Footer() {
               FOOTER_CITIES.slice(0, 2).map((c) => (
                 <li key={s.slug + c}>
                   <Link className="hover:text-gold-400" href={`/instrukcije/${s.slug}/${citySlug(c)}`}>
-                    Instrukcije iz {s.genitive} — {c}
+                    Instrukcije iz {s.genitive}, {c}
                   </Link>
                 </li>
               )),

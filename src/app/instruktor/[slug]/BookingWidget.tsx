@@ -58,7 +58,7 @@ export function BookingWidget({
               setDay(k);
               setSlot(null);
             }}
-            className={`flex min-w-16 shrink-0 flex-col items-center rounded-xl border px-2 py-1.5 text-xs ${k === day ? "border-brand-700 bg-brand-700 text-chalk" : "border-line bg-white text-ink"}`}
+            className={`flex min-w-16 shrink-0 flex-col items-center rounded-md border px-2 py-1.5 text-[13px] ${k === day ? "border-brand-700 bg-brand-700 text-chalk" : "border-line bg-white text-ink"}`}
           >
             <span className="font-semibold capitalize">{dayShort(list[0].starts_at).split(" ")[0].replace(",", "")}</span>
             <span>{dayShort(list[0].starts_at).split(" ").slice(1).join(" ")}</span>
@@ -72,7 +72,7 @@ export function BookingWidget({
             type="button"
             onClick={() => setSlot(s)}
             aria-pressed={slot?.starts_at === s.starts_at}
-            className={`relative min-h-11 rounded-xl border text-sm font-semibold ${slot?.starts_at === s.starts_at ? "border-brand-700 bg-brand-700 text-chalk" : "border-line bg-white hover:border-brand-500"}`}
+            className={`relative min-h-11 rounded-md border text-[15px] font-bold ${slot?.starts_at === s.starts_at ? "border-brand-700 bg-brand-700 text-chalk" : "border-line bg-white hover:border-brand-500"}`}
           >
             {timeHM(s.starts_at)}
             {s.is_hitno && <Zap className="absolute top-1 right-1 size-3 fill-gold-400 text-gold-500" aria-label="hitno" />}
@@ -81,7 +81,7 @@ export function BookingWidget({
       </div>
 
       {slot && (
-        <div className="space-y-2 rounded-xl bg-paper p-3">
+        <div className="space-y-2 rounded-md bg-paper p-3">
           <p className="flex items-center gap-2 text-sm font-semibold">
             <CalendarCheck className="size-4" aria-hidden /> {dayLong(slot.starts_at)}, {timeHM(slot.starts_at)}–{timeHM(slot.ends_at)} ({lessonMinutes} min)
           </p>
@@ -93,7 +93,7 @@ export function BookingWidget({
                   type="button"
                   onClick={() => setMode(m.id)}
                   aria-pressed={mode === m.id}
-                  className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${mode === m.id ? "border-brand-700 bg-brand-700 text-chalk" : "border-line bg-white"}`}
+                  className={`rounded-md border px-3 py-1.5 text-sm font-bold ${mode === m.id ? "border-brand-700 bg-brand-700 text-chalk" : "border-line bg-white"}`}
                 >
                   {m.short}
                 </button>

@@ -18,18 +18,18 @@ function BookingRow({ b }: { b: Booking }) {
     <li className={`card flex flex-col gap-2 p-4 ${cancelled || past ? "opacity-70" : ""}`}>
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
-          <p className="font-display text-lg font-extrabold capitalize">{dayLong(b.starts_at)}</p>
+          <p className="text-lg font-bold capitalize">{dayLong(b.starts_at)}</p>
           <p className="text-sm font-semibold">
-            {timeHM(b.starts_at)}–{timeHM(b.ends_at)} · {modeName(b.mode)}
+            {timeHM(b.starts_at)}–{timeHM(b.ends_at)}, {modeName(b.mode).toLowerCase()}
           </p>
         </div>
         <div className="flex flex-wrap gap-1.5">
           {b.is_hitno && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-board px-2.5 py-1 text-xs font-bold text-gold-400">
+            <span className="inline-flex items-center gap-1 rounded-[4px] bg-board px-1.5 py-0.5 text-[13px] font-bold text-chalk">
               <Zap className="size-3 fill-current" aria-hidden /> Hitno
             </span>
           )}
-          {cancelled ? <span className="chip">Otkazano</span> : past ? <span className="chip">Održano</span> : <span className="chip bg-gold-400 text-board">Potvrđeno</span>}
+          {cancelled ? <span className="chip">Otkazano</span> : past ? <span className="chip">Održano</span> : <span className="chip bg-board text-chalk">Potvrđeno</span>}
         </div>
       </div>
       <p className="text-sm text-slate-700">
@@ -40,7 +40,7 @@ function BookingRow({ b }: { b: Booking }) {
           <Link className="link" href={`/instruktor/${b.tutor_slug}`}>{b.other_name}</Link>
         )}
       </p>
-      {b.note && <p className="rounded-xl bg-paper p-2.5 text-sm text-slate-700">{b.note}</p>}
+      {b.note && <p className="rounded-md bg-paper p-2.5 text-sm text-slate-700">{b.note}</p>}
       {cancelled && b.cancel_reason && <p className="text-sm text-slate-600">Razlog otkazivanja: {b.cancel_reason}</p>}
       {!cancelled && !past && (
         <div className="flex flex-wrap gap-2">
@@ -64,14 +64,14 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 px-4 py-6">
-      <h1 className="font-display text-3xl font-extrabold">Termini</h1>
+      <h1 className="text-3xl font-bold">Termini</h1>
       {sp.novi && (
         <Notice kind="ok">
           Termin je rezerviran i potvrđen. Instruktor je dobio obavijest, a u porukama možete dogovoriti detalje.
         </Notice>
       )}
       <section>
-        <h2 className="mb-3 font-display text-xl font-extrabold">Nadolazeći</h2>
+        <h2 className="mb-3 text-xl font-bold">Nadolazeći</h2>
         {upcoming.length === 0 ? (
           <div className="card flex flex-col items-center gap-2 p-6 text-center text-sm text-slate-600">
             <CalendarDays className="size-6" aria-hidden />
@@ -93,7 +93,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
       </section>
       {rest.length > 0 && (
         <section>
-          <h2 className="mb-3 font-display text-xl font-extrabold">Prošli i otkazani</h2>
+          <h2 className="mb-3 text-xl font-bold">Prošli i otkazani</h2>
           <ul className="space-y-3">
             {rest.map((b) => (
               <BookingRow key={b.id} b={b} />

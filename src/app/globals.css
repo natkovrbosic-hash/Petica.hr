@@ -1,42 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dizajn „Školska ploča”: tamnozelena ploča, kreda, žuti naglasak, topli papir */
-  --color-board: #12352d;
-  --color-chalk: #f3f1e7;
-  --color-paper: #f7f5ee;
-  --color-line: #e4e1d5;
-  --color-ink: #12352d;
+  /* Školska ploča: zelena ploča, kreda, bijeli papir, zid učionice; žuta kreda za glavni poziv na radnju,
+     crvena olovka samo za ocjenu „5” u logotipu */
+  --color-board: #1e3b32;
+  --color-chalk: #eceae3;
+  --color-paper: #eef1ee; /* „zid” — plohe i izmjenični odjeljci */
+  --color-line: #d9dfdb;
+  --color-ink: #18221e;
+  --color-pen: #c23b2e;
+  --color-ledge: #aeb5b1;
 
-  --color-brand-50: #eef3ef;
-  --color-brand-100: #dce7df;
-  --color-brand-200: #bfd3c6;
-  --color-brand-300: #9dbba9;
-  --color-brand-500: #2f6b5a;
-  --color-brand-600: #1c4a3e;
-  --color-brand-700: #12352d;
-  --color-brand-800: #0b231e;
-  --color-brand-900: #081a16;
+  --color-brand-50: #eef3f0;
+  --color-brand-100: #dbe5df;
+  --color-brand-200: #bccdc3;
+  --color-brand-300: #93ad9f;
+  --color-brand-500: #3c6b5a;
+  --color-brand-600: #2a5245;
+  --color-brand-700: #1e3b32;
+  --color-brand-800: #152b24;
+  --color-brand-900: #0f1f1a;
 
-  --color-gold-100: #fcefc7;
+  --color-gold-100: #fbefc9;
   --color-gold-400: #f2c14e;
-  --color-gold-500: #e0a21b;
-  --color-gold-700: #7a5200;
+  --color-gold-500: #dea52a;
+  --color-gold-700: #6e4c00;
 
-  /* sivi tonovi s primjesom zelene (zamjenjuju slate u cijeloj aplikaciji) */
-  --color-slate-50: #f7f5ee;
-  --color-slate-100: #efece2;
-  --color-slate-200: #e4e1d5;
-  --color-slate-300: #d6d3c6;
-  --color-slate-400: #9aa59f;
-  --color-slate-500: #5f6e67;
-  --color-slate-600: #4a5e57;
-  --color-slate-700: #2c4a42;
-  --color-slate-800: #1c3b33;
-  --color-slate-900: #12352d;
+  --color-slate-50: #f6f8f7;
+  --color-slate-100: #eef1ee;
+  --color-slate-200: #d9dfdb;
+  --color-slate-300: #c4ccc7;
+  --color-slate-400: #95a29b;
+  --color-slate-500: #5a6862;
+  --color-slate-600: #46544e;
+  --color-slate-700: #2f3c37;
+  --color-slate-800: #222d29;
+  --color-slate-900: #18221e;
 
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Lexend Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Lexend Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -47,17 +49,30 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-gold-400);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }
 
 body {
-  background: var(--color-paper);
+  background: #ffffff;
   color: var(--color-ink);
   -webkit-tap-highlight-color: transparent;
 }
 
 @utility btn {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[15px] font-semibold transition disabled:cursor-not-allowed disabled:opacity-60;
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-4 py-2.5 text-[16px] font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
 }
 
 @utility btn-primary {
@@ -69,7 +84,7 @@ body {
 }
 
 @utility btn-gold {
-  @apply btn bg-gold-400 text-board hover:bg-gold-500;
+  @apply btn bg-gold-400 text-ink hover:bg-gold-500;
 }
 
 @utility btn-danger {
@@ -77,27 +92,27 @@ body {
 }
 
 @utility btn-sm {
-  @apply min-h-9 rounded-lg px-3 py-1.5 text-sm;
+  @apply min-h-9 rounded-md px-3 py-1.5 text-sm;
 }
 
 @utility input {
-  @apply block w-full rounded-xl border-[1.5px] border-slate-300 bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-slate-500 focus:border-brand-500 focus:ring-2 focus:ring-gold-400/60 focus:outline-none;
+  @apply block w-full rounded-md border border-slate-400 bg-white px-3 py-2.5 text-base text-ink placeholder:text-slate-500 focus:border-board focus:ring-2 focus:ring-gold-400 focus:outline-none;
 }
 
 @utility label {
-  @apply mb-1.5 block text-sm font-semibold text-slate-700;
+  @apply mb-1.5 block text-[15px] font-bold text-ink;
 }
 
 @utility card {
-  @apply rounded-[18px] border-[1.5px] border-line bg-white;
+  @apply rounded-[10px] border border-line bg-white;
 }
 
 @utility chip {
-  @apply inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-800;
+  @apply inline-flex items-center gap-1 rounded-[4px] bg-paper px-2 py-0.5 text-[13px] text-ink;
 }
 
 @utility link {
-  @apply font-semibold text-brand-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-board;
+  @apply font-bold text-board underline decoration-1 underline-offset-[3px] hover:decoration-2;
 }
 
 @layer components {

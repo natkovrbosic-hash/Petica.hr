@@ -101,8 +101,9 @@ export default async function SubjectCityPage({ params }: Params) {
         <Link href="/instrukcije" className="hover:underline">Instrukcije</Link> ›{" "}
         <Link href={`/instrukcije/${s.slug}`} className="hover:underline">{s.name}</Link> › {city.name}
       </nav>
-      <h1 className="mt-2 text-3xl font-extrabold">
-        Instrukcije iz {s.genitive} — {city.name}
+      <h1 className="mt-2 text-[32px] leading-tight sm:text-[40px]">
+        Instrukcije iz {s.genitive}
+        <span className="block text-slate-600">{city.name} i okolica</span>
       </h1>
       <p className="mt-2 max-w-3xl text-slate-600">
         {local.length > 0
@@ -117,7 +118,7 @@ export default async function SubjectCityPage({ params }: Params) {
       </div>
 
       <section className="mt-8">
-        <h2 className="text-xl font-bold">Instruktori — {city.name} i okolica</h2>
+        <h2 className="text-xl font-bold">Instruktori u blizini</h2>
         <div className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-2">
           {local.map((t) => (
             <TutorCard key={t.id} t={t} />
@@ -155,7 +156,7 @@ export default async function SubjectCityPage({ params }: Params) {
 
       <section className="mt-10 grid gap-6 sm:grid-cols-2">
         <div>
-          <h2 className="font-bold">{s.name} u okolnim mjestima</h2>
+          <h2 className="font-bold">Isti predmet u okolnim mjestima</h2>
           <ul className="mt-2 flex flex-wrap gap-2">
             {nearby.map((c) => (
               <li key={c.name}>
@@ -165,7 +166,7 @@ export default async function SubjectCityPage({ params }: Params) {
           </ul>
         </div>
         <div>
-          <h2 className="font-bold">Drugi predmeti — {city.name}</h2>
+          <h2 className="font-bold">Drugi predmeti, {city.name}</h2>
           <ul className="mt-2 flex flex-wrap gap-2">
             {SUBJECTS.filter((x) => x.slug !== s.slug).slice(0, 12).map((x) => (
               <li key={x.slug}>

@@ -8,7 +8,7 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
   const sp = await searchParams;
   return (
     <div className="mx-auto max-w-md px-4 py-10">
-      <h1 className="text-2xl font-extrabold">Registracija</h1>
+      <h1 className="text-2xl font-bold">Registracija</h1>
       <p className="mt-1 text-sm text-slate-600">
         Već imate račun? <Link className="link" href="/prijava">Prijavite se</Link>
       </p>

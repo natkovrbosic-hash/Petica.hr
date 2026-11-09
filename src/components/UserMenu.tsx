@@ -41,20 +41,20 @@ export function UserMenu() {
   if (!me)
     return (
       <>
-        <Link href="/za-instruktore" className="hidden rounded-full px-3 py-2 hover:bg-white/10 sm:block">
+        <Link href="/za-instruktore" className="hidden rounded-md px-3 py-2 hover:bg-white/10 sm:block">
           Za instruktore
         </Link>
-        <Link href="/prijava" className="rounded-full border-[1.5px] border-chalk/50 px-3.5 py-2 hover:bg-white/10">
+        <Link href="/prijava" className="ml-1 rounded-md bg-chalk px-3.5 py-2 text-board hover:bg-white">
           Prijava
         </Link>
       </>
     );
   return (
     <>
-      <Link href="/termini" className="hidden rounded-full px-3 py-2 hover:bg-white/10 sm:block">
+      <Link href="/termini" className="hidden rounded-md px-3 py-2 hover:bg-white/10 sm:block">
         Termini
       </Link>
-      <Link href="/poruke" className="relative rounded-full px-3 py-2 hover:bg-white/10">
+      <Link href="/poruke" className="relative rounded-md px-3 py-2 hover:bg-white/10">
         Poruke
         {unread > 0 && (
           <span className="absolute -top-1.5 -right-1.5 grid min-w-5 place-items-center rounded-full bg-gold-400 px-1 text-[11px] font-bold text-board">
@@ -63,18 +63,18 @@ export function UserMenu() {
         )}
       </Link>
       {me.role === "instruktor" && (
-        <Link href="/moj-profil" className="hidden rounded-full px-3 py-2 hover:bg-white/10 md:block">
+        <Link href="/moj-profil" className="hidden rounded-md px-3 py-2 hover:bg-white/10 md:block">
           Moj profil
         </Link>
       )}
       {me.role === "admin" && (
-        <Link href="/admin" className="rounded-full px-3 py-2 text-gold-400 hover:bg-white/10">
+        <Link href="/admin" className="rounded-md px-3 py-2 hover:bg-white/10">
           Admin
         </Link>
       )}
       <Link
         href="/moj-racun"
-        className="grid size-9 place-items-center rounded-full bg-chalk text-sm font-bold text-board"
+        className="ml-1 grid size-9 place-items-center rounded-md bg-chalk text-sm font-bold text-board"
         aria-label="Moj račun"
         title={me.name}
       >

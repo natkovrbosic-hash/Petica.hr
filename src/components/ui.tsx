@@ -18,13 +18,13 @@ export function Avatar({ name, src, size = 64, round = false }: { name: string; 
         alt={name}
         width={size}
         height={size}
-        className={`shrink-0 object-cover ${round ? "rounded-full" : "rounded-2xl"}`}
+        className={`shrink-0 object-cover ${round ? "rounded-full" : "rounded-md"}`}
         style={{ width: size, height: size }}
       />
     );
   return (
     <div
-      className={`grid shrink-0 place-items-center bg-brand-100 font-display font-extrabold text-board ${round ? "rounded-full" : "rounded-2xl"}`}
+      className={`grid shrink-0 place-items-center bg-paper font-bold text-board ${round ? "rounded-full" : "rounded-md"}`}
       style={{ width: size, height: size, fontSize: size / 2.8 }}
       aria-hidden
     >
@@ -36,7 +36,7 @@ export function Avatar({ name, src, size = 64, round = false }: { name: string; 
 export function Stars({ value, count, size = "sm" }: { value: number; count?: number; size?: "sm" | "lg" }) {
   const v = Number(value) || 0;
   if (count === 0)
-    return <span className={`${size === "lg" ? "text-base" : "text-sm"} font-medium text-slate-600`}>Novi profil · još bez recenzija</span>;
+    return <span className={`${size === "lg" ? "text-base" : "text-sm"} font-medium text-slate-600`}>Još nema recenzija</span>;
   return (
     <span className={`inline-flex items-center gap-1 ${size === "lg" ? "text-base" : "text-sm"}`}>
       <span className="inline-flex" aria-hidden>
@@ -59,8 +59,8 @@ export function Stars({ value, count, size = "sm" }: { value: number; count?: nu
 
 export function FeaturedBadge() {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-gold-400 px-2.5 py-1 text-xs font-bold text-board">
-      <Star className="size-3 fill-current" aria-hidden /> Istaknuto
+    <span className="inline-flex items-center gap-1 rounded-[4px] bg-gold-400 px-1.5 py-0.5 text-[13px] font-bold text-ink">
+      Istaknuto
     </span>
   );
 }
@@ -68,10 +68,10 @@ export function FeaturedBadge() {
 export function TestBadge() {
   return (
     <span
-      className="inline-flex items-center rounded-full border border-dashed border-slate-500 px-2 py-0.5 text-[11px] font-bold text-slate-700"
+      className="inline-flex items-center rounded-[4px] border border-dashed border-slate-500 px-1.5 py-0.5 text-[13px] text-slate-700"
       title="Ovo je testni profil za demonstraciju — nije stvarni instruktor."
     >
-      TESTNI PROFIL
+      Testni profil
     </span>
   );
 }
@@ -94,7 +94,7 @@ export function Notice({ kind = "info", children }: { kind?: "info" | "warn" | "
     error: "border-red-200 bg-red-50 text-red-800",
     ok: "border-emerald-200 bg-emerald-50 text-emerald-900",
   }[kind];
-  return <div className={`rounded-xl border px-4 py-3 text-sm ${cls}`}>{children}</div>;
+  return <div className={`rounded-md border px-4 py-3 text-sm ${cls}`}>{children}</div>;
 }
 
 export const formatEur = (n: number | null | undefined) =>

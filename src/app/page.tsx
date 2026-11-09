@@ -1,109 +1,131 @@
 import Link from "next/link";
-import { ArrowRight, Zap } from "lucide-react";
 import { HeroSearch } from "@/components/HeroSearch";
-import { SUBJECTS } from "@/lib/subjects";
-import { FEATURED_PRICE_EUR, SITE_NAME, launchPromo } from "@/lib/config";
+import { subjectBySlug } from "@/lib/subjects";
+import { FEATURED_PRICE_EUR, launchPromo } from "@/lib/config";
+import { formatDate } from "@/components/ui";
 
 export const revalidate = 3600;
 
-const SUBJECT_HINTS: Record<string, string> = {
-  matematika: "OŠ, SŠ, fakultet",
-  "hrvatski-jezik": "lektira, esej",
-  "engleski-jezik": "škola, Cambridge ispiti",
-  fizika: "SŠ, fakultet",
-  kemija: "OŠ, SŠ",
-  biologija: "SŠ, matura",
-  "njemacki-jezik": "škola, Goethe ispiti",
-  programiranje: "Python, Java",
-};
+const GROUPS: { title: string; slugs: string[] }[] = [
+  { title: "Matematika i informatika", slugs: ["matematika", "statistika", "informatika", "programiranje"] },
+  { title: "Jezici", slugs: ["hrvatski-jezik", "engleski-jezik", "njemacki-jezik", "talijanski-jezik", "francuski-jezik", "spanjolski-jezik", "latinski-jezik"] },
+  { title: "Prirodne znanosti", slugs: ["fizika", "kemija", "biologija", "geografija"] },
+  { title: "Društveni predmeti", slugs: ["povijest", "filozofija", "ekonomija", "racunovodstvo"] },
+  { title: "Razredna nastava", slugs: ["pomoc-u-ucenju"] },
+];
+
+const MATURA = [
+  ["matematika", "Matematika, viša i osnovna razina"],
+  ["hrvatski-jezik", "Hrvatski jezik i esej"],
+  ["engleski-jezik", "Engleski jezik"],
+  ["fizika", "Fizika"],
+  ["kemija", "Kemija"],
+  ["biologija", "Biologija"],
+] as const;
 
 export default function HomePage() {
   const promo = launchPromo();
-  const top = SUBJECTS.filter((s) => SUBJECT_HINTS[s.slug]);
   return (
     <>
-      <section className="rounded-b-[28px] bg-board text-chalk">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 pt-8 pb-10 md:grid-cols-[1.1fr_1fr] md:items-center md:pt-14 md:pb-16">
-          <div>
-            <h1 className="font-display text-[42px] leading-[1.02] font-extrabold sm:text-6xl">
-              Instrukcije
-              <br />
-              <span className="text-gold-400">za bolje</span>
-              <br />
-              rezultate.
-            </h1>
-            <p className="mt-4 max-w-md text-base text-brand-100 sm:text-lg">
-              Instruktori za osnovnu i srednju školu, državnu maturu i fakultet — uživo, s dolaskom kući ili
-              online. Termin rezervirate izravno prema rasporedu instruktora, bez provizije.
+      <section className="bg-board text-chalk">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 pt-10 pb-12 md:grid-cols-[minmax(0,1fr)_minmax(0,460px)] md:items-end md:pt-16 md:pb-16">
+          <div className="max-w-xl">
+            <h1 className="text-[36px] leading-[1.1] font-semibold sm:text-[50px]">Instrukcije iz svih školskih predmeta, uživo ili online</h1>
+            <p className="mt-5 text-[17px] leading-relaxed text-chalk/85">
+              Instruktori za osnovnu i srednju školu, državnu maturu i fakultet. Termin birate prema rasporedu
+              instruktora, a naknadu plaćate izravno njemu.
             </p>
-            <Link
-              href="/pretraga?hitno=1"
-              className="mt-5 inline-flex items-center gap-2 rounded-full border-[1.5px] border-gold-400 px-4 py-2.5 text-sm font-semibold text-gold-400 hover:bg-white/10"
-            >
-              <Zap className="size-4 fill-current" aria-hidden /> Hitne instrukcije — termini danas
-            </Link>
+            <p className="mt-5 text-[15px]">
+              Trebate instrukcije danas?{" "}
+              <Link href="/pretraga?hitno=1" className="font-bold text-gold-400 underline underline-offset-[3px] hover:decoration-2">
+                Instruktori sa slobodnim terminom
+              </Link>
+            </p>
           </div>
           <HeroSearch />
         </div>
+        {/* polica za kredu */}
+        <div className="h-2.5 bg-ledge" aria-hidden>
+          <div className="mx-auto h-full max-w-6xl px-4">
+            <div className="relative -top-1 ml-6 h-1.5 w-10 rounded-[2px] bg-gold-400" />
+          </div>
+        </div>
       </section>
 
-      <div className="mx-auto max-w-6xl space-y-10 px-4 pt-6">
-        <Link
-          href="/priprema-za-maturu"
-          className="flex items-center justify-between gap-4 rounded-[18px] bg-gold-400 p-5 text-board sm:p-6"
-        >
-          <span>
-            <span className="block font-display text-2xl font-extrabold sm:text-3xl">Priprema za državnu maturu</span>
-            <span className="mt-1 block text-sm sm:text-base">
-              Matematika (A i B razina), hrvatski jezik, engleski jezik i izborni predmeti.
-            </span>
-          </span>
-          <span className="grid size-11 shrink-0 place-items-center rounded-full bg-board text-gold-400">
-            <ArrowRight className="size-5" aria-hidden />
-          </span>
-        </Link>
-
-        <section>
-          <h2 className="font-display text-2xl font-extrabold">Predmeti</h2>
-          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
-            {top.map((s) => (
-              <Link key={s.slug} href={`/instrukcije/${s.slug}`} className="card flex flex-col p-4 hover:border-brand-300">
-                <span className="font-semibold">{s.name}</span>
-                <span className="text-[13px] text-slate-600">{SUBJECT_HINTS[s.slug]}</span>
-              </Link>
-            ))}
-            <Link href="/instrukcije" className="flex flex-col rounded-[18px] bg-board p-4 text-chalk">
-              <span className="font-semibold">Svih {SUBJECTS.length}</span>
-              <span className="text-[13px] text-brand-100">predmeta</span>
-            </Link>
-          </div>
-        </section>
-
-        <section className="grid gap-3 sm:grid-cols-3">
-          {[
-            ["Pretraga", "Odaberite predmet, razinu, grad, cijenu i željeni termin."],
-            ["Rezervacija", "Slobodni termini izračunavaju se iz rasporeda instruktora; rezervacija se potvrđuje odmah."],
-            ["Instrukcije i recenzija", "Naknadu plaćate izravno instruktoru. Nakon razmjene poruka možete ostaviti recenziju."],
-          ].map(([t, d], i) => (
-            <div key={t} className="card p-5">
-              <span className="font-display text-3xl font-extrabold text-gold-500">{i + 1}</span>
-              <h3 className="mt-1 font-display text-lg font-extrabold">{t}</h3>
-              <p className="mt-1 text-sm text-slate-600">{d}</p>
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="text-[28px]">Predmeti</h2>
+        <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          {GROUPS.map((g) => (
+            <div key={g.title}>
+              <h3 className="border-b border-ink pb-2 text-[17px]">{g.title}</h3>
+              <ul className="grid grid-cols-2 gap-x-4 sm:grid-cols-1">
+                {g.slugs.map((slug) => (
+                  <li key={slug} className="border-b border-line">
+                    <Link href={`/instrukcije/${slug}`} className="block py-2.5 text-[16px] hover:underline hover:underline-offset-[3px]">
+                      {subjectBySlug(slug)?.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
-        </section>
+        </div>
+      </section>
 
-        <section className="flex flex-col gap-4 rounded-[18px] bg-board p-6 text-chalk sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 className="font-display text-2xl font-extrabold">Za instruktore</h2>
-            <p className="mt-1 text-sm text-brand-100">
-              Osnovni profil na {SITE_NAME} je besplatan. Istaknuti profil {FEATURED_PRICE_EUR} €/mj
-              {promo.active ? " — besplatno tijekom razdoblja lansiranja." : "."} Platforma ne naplaćuje proviziju na održane sate.
+      <section className="bg-paper">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-2">
+          <div className="max-w-md">
+            <h2 className="text-[28px]">Državna matura</h2>
+            <p className="mt-3 text-[16px] leading-relaxed text-slate-700">
+              Instruktori koji pripremaju za ispite državne mature: rješavanje ispita iz prethodnih rokova, pisanje eseja i
+              ponavljanje gradiva po ispitnom katalogu.
+            </p>
+            <Link href="/priprema-za-maturu" className="link mt-4 inline-block">Svi instruktori za maturu</Link>
+          </div>
+          <ul className="border-t border-ink">
+            {MATURA.map(([slug, label]) => (
+              <li key={slug} className="border-b border-line">
+                <Link href={`/pretraga?predmet=${slug}&razina=matura`} className="flex justify-between gap-4 py-3 text-[16px] hover:underline hover:underline-offset-[3px]">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="text-[28px]">Kako rezervirati instrukcije</h2>
+        <ol className="mt-6 grid max-w-4xl gap-6 sm:grid-cols-3">
+          {[
+            ["Odaberite instruktora", "Po predmetu, razini, gradu, cijeni i recenzijama drugih korisnika."],
+            ["Rezervirajte termin", "Slobodni termini izračunavaju se iz rasporeda instruktora. Rezervacija se potvrđuje odmah."],
+            ["Platite instruktoru", "Naknadu plaćate izravno instruktoru. Petica.hr ne naplaćuje sate i ne uzima proviziju."],
+          ].map(([t, d], i) => (
+            <li key={t} className="flex gap-3">
+              <span className="text-[28px] leading-none font-bold text-board">{i + 1}.</span>
+              <span>
+                <span className="block text-[17px] font-bold">{t}</span>
+                <span className="mt-1 block text-[15px] leading-relaxed text-slate-700">{d}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-4">
+        <div className="flex flex-col gap-4 border-t border-ink pt-8 sm:flex-row sm:items-start sm:justify-between">
+          <div className="max-w-xl">
+            <h2 className="text-[22px]">Za instruktore</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-slate-700">
+              Osnovni profil je besplatan. Istaknuti profil stoji {FEATURED_PRICE_EUR} € mjesečno
+              {promo.active ? `, a do ${formatDate(promo.until)} je besplatan` : ""}. Platforma ne naplaćuje proviziju na
+              održane sate.
             </p>
           </div>
-          <Link href="/registracija?uloga=instruktor" className="btn-gold shrink-0">Registracija instruktora</Link>
-        </section>
-      </div>
+          <Link href="/registracija?uloga=instruktor" className="btn-primary shrink-0">Registracija instruktora</Link>
+        </div>
+      </section>
     </>
   );
 }

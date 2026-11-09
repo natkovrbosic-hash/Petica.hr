@@ -20,13 +20,13 @@ export function HeroSearch() {
 
   return (
     <form
-      className="rounded-[18px] bg-paper p-4 text-ink"
+      className="rounded-[10px] bg-white p-4 text-ink sm:p-5"
       onSubmit={(e) => {
         e.preventDefault();
         go({ q: q.trim(), grad });
       }}
     >
-      <label htmlFor="hero-q" className="label text-slate-600">Opišite gradivo ili poteškoću</label>
+      <label htmlFor="hero-q" className="label">Što trebate vježbati?</label>
       <input
         id="hero-q"
         className="input"
@@ -38,7 +38,7 @@ export function HeroSearch() {
       <div className="mt-2 min-h-8">
         {matches.length > 0 ? (
           <div className="flex flex-wrap items-center gap-1.5 text-sm">
-            <span className="text-slate-600">Predloženi predmet:</span>
+            <span className="text-slate-600">Predmet:</span>
             {matches.map((m) => {
               const s = subjectBySlug(m.subject)!;
               return (
@@ -46,7 +46,7 @@ export function HeroSearch() {
                   type="button"
                   key={m.subject}
                   onClick={() => go({ predmet: s.slug, grad })}
-                  className="rounded-full bg-gold-400 px-3 py-1.5 text-sm font-semibold text-board hover:bg-gold-500"
+                  className="rounded-[4px] border border-board px-2 py-1 text-sm font-bold text-board hover:bg-paper"
                 >
                   {s.name}
                 </button>
@@ -54,9 +54,9 @@ export function HeroSearch() {
             })}
           </div>
         ) : (
-          <div className="flex flex-wrap gap-1.5 text-xs text-slate-500">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-[14px] text-slate-600">
             {EXAMPLES.map((ex) => (
-              <button type="button" key={ex} className="chip bg-white hover:bg-slate-200" onClick={() => setQ(ex)}>
+              <button type="button" key={ex} className="underline decoration-slate-300 underline-offset-[3px] hover:text-ink hover:decoration-ink" onClick={() => setQ(ex)}>
                 {ex}
               </button>
             ))}
@@ -77,7 +77,7 @@ export function HeroSearch() {
             <option key={c.name} value={c.name} />
           ))}
         </datalist>
-        <button className="btn-primary sm:w-44" type="submit">Pretraži instruktore</button>
+        <button className="btn-primary whitespace-nowrap" type="submit">Pretraži instruktore</button>
       </div>
     </form>
   );

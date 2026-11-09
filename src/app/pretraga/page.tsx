@@ -28,7 +28,7 @@ export default async function SearchPage({
     effective.grad ?? effective.zupanija,
   ]
     .filter(Boolean)
-    .join(" · ");
+    .join(", ");
 
   const toggle = (patch: Partial<typeof effective>) => `/pretraga?${filtersToQuery({ ...effective, ...patch, str: 1 })}`;
   const quick = [
@@ -48,16 +48,15 @@ export default async function SearchPage({
 
   return (
     <div>
-      <div className="rounded-b-[24px] bg-board text-chalk">
+      <div className="bg-board text-chalk">
         <div className="mx-auto max-w-6xl px-4 pt-4 pb-5">
-          <h1 className="font-display text-[28px] leading-tight font-extrabold sm:text-4xl">
-            {effective.hitno && <span className="text-gold-400">Hitne instrukcije · </span>}
-            {title}
+          <h1 className="text-[28px] leading-tight sm:text-[36px]">
+            {effective.hitno ? `Hitne instrukcije: ${title.charAt(0).toLowerCase()}${title.slice(1)}` : title}
           </h1>
-          <p className="mt-1 text-sm text-brand-100">
+          <p className="mt-1 text-[15px] text-chalk/80">
             {total === 1 ? "1 instruktor" : `${total} instruktora`}
             {effective.grad ? ` u krugu ${effective.radijus} km` : ""}
-            {effective.hitno ? " · slobodan termin u sljedeća 24 sata" : ""}
+            {effective.hitno ? ", sa slobodnim terminom u sljedeća 24 sata" : ""}
           </p>
           <div className="mt-4 -mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
             {quick.map((q) => (
@@ -65,9 +64,9 @@ export default async function SearchPage({
                 key={q.label}
                 href={q.href}
                 aria-pressed={q.on}
-                className={`inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full px-4 text-sm font-semibold ${q.on ? "bg-gold-400 text-board" : "border-[1.5px] border-chalk/45 text-chalk hover:bg-white/10"}`}
+                className={`inline-flex h-10 shrink-0 items-center gap-1.5 rounded-md px-3.5 text-[15px] font-bold ${q.on ? "bg-chalk text-board" : "border border-chalk/40 text-chalk hover:bg-white/10"}`}
               >
-                {q.icon && <Zap className="size-3.5 fill-current" aria-hidden />}
+                {q.icon && <Zap className={`size-3.5 ${q.on ? "fill-gold-500 text-gold-500" : "fill-gold-400 text-gold-400"}`} aria-hidden />}
                 {q.label}
               </Link>
             ))}
@@ -98,7 +97,7 @@ export default async function SearchPage({
                   )}
                 </>
               ) : (
-                <>Nismo prepoznali predmet za „{f.q}” — odaberite ga u filterima.</>
+                <>Za „{f.q}” nismo prepoznali predmet. Odaberite ga u filterima.</>
               )}
             </Notice>
           </div>

@@ -21,10 +21,10 @@ export function SearchFilters({ f }: { f: Filters }) {
       </button>
       <form action="/pretraga" className={`${open ? "mt-4 block" : "hidden"} space-y-4 lg:block`}>
         {f.q && <input type="hidden" name="q" value={f.q} />}
-        <label className="flex items-start gap-2 rounded-xl bg-gold-100 p-3 text-sm">
+        <label className="flex items-start gap-2 rounded-md border border-line bg-paper p-3 text-sm">
           <input type="checkbox" name="hitno" value="1" defaultChecked={f.hitno} className="mt-0.5 size-4" />
           <span>
-            <strong>Hitne instrukcije</strong> — slobodan termin u sljedeća 24 sata
+            <strong>Hitne instrukcije:</strong> slobodan termin u sljedeća 24 sata
           </span>
         </label>
         <div>

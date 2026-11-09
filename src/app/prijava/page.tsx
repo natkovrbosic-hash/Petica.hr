@@ -9,7 +9,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   const sp = await searchParams;
   return (
     <div className="mx-auto max-w-md px-4 py-10">
-      <h1 className="text-2xl font-extrabold">Prijava</h1>
+      <h1 className="text-2xl font-bold">Prijava</h1>
       <p className="mt-1 text-sm text-slate-600">
         Nemate račun? <Link className="link" href={`/registracija${sp.next ? `?next=${encodeURIComponent(sp.next)}` : ""}`}>Registrirajte se</Link>
       </p>

@@ -7,11 +7,11 @@ import { Notice, formatDate } from "@/components/ui";
 type Sub = { status: string; source: string; current_period_end: string | null; cancel_at_period_end: boolean } | null;
 
 const MSG: Record<string, [kind: "ok" | "warn" | "error" | "info", text: string]> = {
-  uspjeh: ["ok", "Hvala! Pretplata je aktivirana — istaknutost se uključuje čim Stripe potvrdi plaćanje (obično odmah)."],
+  uspjeh: ["ok", "Pretplata je aktivirana. Istaknutost se uključuje čim Stripe potvrdi plaćanje, obično odmah."],
   test: ["warn", "TESTNI NAČIN: Stripe nije konfiguriran, pretplata je simulirana na mjesec dana."],
   odustao: ["info", "Plaćanje je prekinuto. Ništa nije naplaćeno."],
   neodobren: ["warn", "Profil mora biti odobren prije isticanja."],
-  promo: ["info", "Tijekom razdoblja lansiranja istaknuti profil je besplatan — uključite ga ispod."],
+  promo: ["info", "Tijekom razdoblja lansiranja istaknuti profil je besplatan. Uključite ga ispod."],
   "vec-aktivna": ["info", "Pretplata je već aktivna."],
   greska: ["error", "Nešto nije u redu. Pokušajte ponovno ili se javite podršci."],
 };
@@ -49,7 +49,7 @@ export function FeaturedBox({
             besplatan.
           </p>
         </div>
-        <p className="shrink-0 text-right text-xl font-extrabold">
+        <p className="shrink-0 text-right text-xl font-bold">
           {promo.active ? <span className="text-emerald-700">0 €</span> : `${priceEur} €`}
           <span className="block text-xs font-medium text-slate-500">mjesečno</span>
         </p>
@@ -86,7 +86,7 @@ export function FeaturedBox({
         {approved && !promo.active && !paid && (
           <form action="/api/stripe/checkout" method="post">
             <button className="btn-gold w-full sm:w-auto">
-              {featured ? "Nastavi uz pretplatu" : "Istakni profil"} — {priceEur} €/mj
+              {featured ? "Nastavi uz pretplatu" : "Istakni profil"} ({priceEur} €/mj)
             </button>
             <p className="mt-2 text-xs text-slate-500">
               Plaćanje karticom, Apple Pay / Google Pay{stripeEnabled ? " ili PayPal (ako je dostupan)" : ""} preko

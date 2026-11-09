@@ -24,7 +24,7 @@ export default async function MessagesPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-6">
-      <h1 className="text-2xl font-extrabold">Poruke</h1>
+      <h1 className="text-2xl font-bold">Poruke</h1>
       {list.length === 0 ? (
         <div className="card mt-6 p-6 text-center text-sm text-slate-600">
           {profile.role === "instruktor" ? (
@@ -43,7 +43,7 @@ export default async function MessagesPage() {
                 <Avatar name={c.other_name} src={c.other_photo} size={48} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <p className={`truncate ${c.unread > 0 ? "font-extrabold" : "font-semibold"}`}>{c.other_name}</p>
+                    <p className={`truncate ${c.unread > 0 ? "font-bold" : "font-semibold"}`}>{c.other_name}</p>
                     <span className="shrink-0 text-xs text-slate-500">{when(c.last_message_at)}</span>
                   </div>
                   <p className={`truncate text-sm ${c.unread > 0 ? "font-semibold text-slate-900" : "text-slate-600"}`}>

@@ -2,7 +2,7 @@ import { WEEKDAYS } from "@/lib/subjects";
 import type { Availability } from "@/lib/types";
 
 export function AvailabilityGrid({ slots }: { slots: Availability[] }) {
-  if (!slots.length) return <p className="text-sm text-slate-500">Instruktor nije upisao dostupnost — pitajte ga porukom.</p>;
+  if (!slots.length) return <p className="text-sm text-slate-500">Instruktor nije upisao dostupnost. Pitajte ga porukom.</p>;
   return (
     <div className="grid grid-cols-7 gap-1 text-center text-xs">
       {WEEKDAYS.map((d) => {

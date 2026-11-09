@@ -42,7 +42,7 @@ export default async function SubjectPage({ params }: Params) {
       <nav className="text-xs text-slate-500">
         <Link href="/instrukcije" className="hover:underline">Instrukcije</Link> › {s.name}
       </nav>
-      <h1 className="mt-2 text-3xl font-extrabold">
+      <h1 className="mt-2 text-3xl font-bold">
         Instrukcije iz {s.genitive}
       </h1>
       <p className="mt-2 max-w-3xl text-slate-600">
@@ -65,7 +65,7 @@ export default async function SubjectPage({ params }: Params) {
         <section>
           <h2 className="text-xl font-bold">Instruktori {s.genitive}</h2>
           <div className="mt-3 space-y-3">
-            {tutors.length === 0 && <p className="text-sm text-slate-600">Uskoro — budite prvi instruktor za ovaj predmet!</p>}
+            {tutors.length === 0 && <p className="text-sm text-slate-600">Još nema instruktora. Budite prvi instruktor za ovaj predmet!</p>}
             {tutors.map((t) => (
               <TutorCard key={t.id} t={t} />
             ))}

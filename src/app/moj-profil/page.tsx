@@ -47,7 +47,7 @@ export default async function MyTutorProfilePage({ searchParams }: { searchParam
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-6">
-      <h1 className="text-2xl font-extrabold">Moj profil instruktora</h1>
+      <h1 className="text-2xl font-bold">Moj profil instruktora</h1>
       <StatusBanner t={t} />
 
       <HitnoBox hitnoUntil={t.hitno_until} approved={t.status === "odobren"} />

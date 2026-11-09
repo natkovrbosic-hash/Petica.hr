@@ -19,7 +19,7 @@ export default function CookiesPage() {
       </p>
       <div className="my-4 overflow-x-auto">
         <table className="w-full min-w-[520px] text-left text-sm">
-          <thead className="border-b text-xs text-slate-500 uppercase">
+          <thead className="border-b text-[14px] text-slate-600">
             <tr>
               <th className="py-2 pr-3">Kolačić</th>
               <th className="py-2 pr-3">Vrsta</th>

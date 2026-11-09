@@ -19,8 +19,7 @@ otkazati i dobivaju email. Plaćanje je i dalje izravno.
 pod „Hitno”, a termini se nude odmah, i izvan radnog vremena i bez najave. Filter „Hitno” prikazuje
 instruktore koji su slobodni sada ili imaju slobodan termin u sljedeća 24 sata.
 
-**Dizajn:** „Školska ploča” — tamnozelena ploča, kreda, žuti naglasak. Fontovi Bricolage Grotesque i Inter
-(lokalno, `@fontsource`), ikone `lucide-react`, bez emojija.
+**Dizajn:** školska ploča (zelena ploča, kreda, bijeli papir), font Lexend (lokalno, `@fontsource`), ikone `lucide-react`. Bez emojija, bez pilula i bez mreže identičnih kartica: popisi s tankim crtama, zaobljenja 4/6/10 px.
 
 ## Pokretanje lokalno
 

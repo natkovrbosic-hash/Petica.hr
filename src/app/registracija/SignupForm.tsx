@@ -25,7 +25,7 @@ export function SignupForm({ initialRole, next }: { initialRole: "korisnik" | "i
           ).map(([id, title, sub]) => (
             <label
               key={id}
-              className={`cursor-pointer rounded-xl border p-3 text-sm ${role === id ? "border-brand-500 bg-brand-50 ring-2 ring-brand-200" : "border-slate-300"}`}
+              className={`cursor-pointer rounded-md border p-3 text-sm ${role === id ? "border-brand-500 bg-brand-50 ring-2 ring-brand-200" : "border-slate-300"}`}
             >
               <input type="radio" name="role" value={id} checked={role === id} onChange={() => setRole(id)} className="sr-only" />
               <span className="block font-bold">{title}</span>
@@ -69,7 +69,7 @@ export function SignupForm({ initialRole, next }: { initialRole: "korisnik" | "i
         </span>
       </label>
       {role === "instruktor" && (
-        <p className="rounded-xl bg-slate-50 p-3 text-xs text-slate-600">
+        <p className="rounded-md bg-slate-50 p-3 text-xs text-slate-600">
           Kao instruktor sami ste odgovorni za svoje porezne i druge zakonske obveze. Petica.hr samo prodaje oglasni
           prostor i ne sudjeluje u plaćanju instrukcija.
         </p>

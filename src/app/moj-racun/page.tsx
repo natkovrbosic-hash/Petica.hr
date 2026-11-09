@@ -30,14 +30,14 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-extrabold">Moj račun</h1>
+        <h1 className="text-2xl font-bold">Moj račun</h1>
         <form action={signOut}>
           <button className="btn-secondary btn-sm">Odjava</button>
         </form>
       </div>
       {sp.lozinka && <Notice kind="ok">Lozinka je promijenjena.</Notice>}
       <p className="text-sm text-slate-600">
-        {user.email} · {ROLE[profile.role]}
+        {user.email}, {ROLE[profile.role].toLowerCase()}
       </p>
 
       {profile.role === "instruktor" && (

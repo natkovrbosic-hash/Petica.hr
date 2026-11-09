@@ -28,7 +28,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6">
-      <h1 className="text-2xl font-extrabold">Admin</h1>
+      <h1 className="text-2xl font-bold">Admin</h1>
       <nav className="mt-4 flex gap-1 overflow-x-auto border-b border-slate-200">
         {TABS.map(([id, label]) => (
           <Link
@@ -83,8 +83,8 @@ async function Overview({ supabase }: { supabase: SB }) {
         {cards.map(([label, value, href]) => {
           const inner = (
             <>
-              <p className="text-xs font-semibold text-slate-500 uppercase">{label}</p>
-              <p className="mt-1 text-2xl font-extrabold">{value}</p>
+              <p className="text-[14px] text-slate-600">{label}</p>
+              <p className="mt-1 text-2xl font-bold">{value}</p>
             </>
           );
           return href ? (
@@ -95,7 +95,7 @@ async function Overview({ supabase }: { supabase: SB }) {
         })}
       </div>
       <p className="text-sm text-slate-600">
-        Besplatno razdoblje lansiranja: {p.active ? `uključeno do ${formatDate(p.until)}` : "isključeno"} · promo istaknutih: {promo}
+        Besplatno razdoblje lansiranja: {p.active ? `uključeno do ${formatDate(p.until)}` : "isključeno"} . Istaknuti profili u promociji: {promo}.
       </p>
     </div>
   );
@@ -135,14 +135,14 @@ async function Profiles({ supabase, status }: { supabase: SB; status: string }) 
             </div>
             <p className="text-sm text-slate-700">{t.headline}</p>
             <p className="text-xs text-slate-600">
-              {t.subjects.map(subjectName).join(", ") || "— nema predmeta"} · {levelsSummary(t.levels) || "— nema razina"} ·{" "}
-              {t.modes.map((m) => modeName(m, true)).join(", ") || "— nema načina"} · {formatEur(t.price_eur)} · {t.city ?? "— nema grada"}
+              {t.subjects.map(subjectName).join(", ") || "nema predmeta"}; {levelsSummary(t.levels) || "nema razina"};{" "}
+              {t.modes.map((m) => modeName(m, true)).join(", ") || "nema načina"}; {formatEur(t.price_eur)}; {t.city ?? "nema grada"}
             </p>
             {t.bio && <p className="line-clamp-3 text-sm text-slate-600">{t.bio}</p>}
             {t.rejection_reason && <p className="text-xs text-red-700">Razlog odbijanja: {t.rejection_reason}</p>}
             <p className="text-xs text-slate-500">
               Registriran {formatDate(t.created_at)}
-              {t.submitted_at && ` · poslan na odobrenje ${formatDate(t.submitted_at)}`}
+              {t.submitted_at && `, poslan na odobrenje ${formatDate(t.submitted_at)}`}
             </p>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <TutorModeration tutorId={t.id} status={t.status} />
@@ -252,7 +252,7 @@ async function Subscriptions({ supabase }: { supabase: SB }) {
   return (
     <div className="card overflow-x-auto">
       <table className="w-full min-w-[640px] text-left text-sm">
-        <thead className="border-b border-slate-200 text-xs text-slate-500 uppercase">
+        <thead className="border-b border-slate-200 text-[14px] text-slate-600">
           <tr>
             <th className="p-3">Instruktor</th>
             <th className="p-3">Izvor</th>

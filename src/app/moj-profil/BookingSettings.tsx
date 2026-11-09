@@ -13,8 +13,8 @@ export function HitnoBox({ hitnoUntil, approved }: { hitnoUntil: string | null; 
   const active = Boolean(hitnoUntil && new Date(hitnoUntil) > new Date());
   const run = (h: number) => start(async () => setMsg(await setHitno(h)));
   return (
-    <section className={`rounded-[18px] p-5 ${active ? "bg-board text-chalk" : "card"}`}>
-      <h2 className="flex items-center gap-2 font-display text-lg font-extrabold">
+    <section className={`rounded-[10px] p-5 ${active ? "bg-board text-chalk" : "card"}`}>
+      <h2 className="flex items-center gap-2 text-lg font-bold">
         <Zap className={`size-5 ${active ? "fill-gold-400 text-gold-400" : "text-gold-500"}`} aria-hidden /> Hitne instrukcije
       </h2>
       <p className={`mt-1 text-sm ${active ? "text-brand-100" : "text-slate-600"}`}>
@@ -58,7 +58,7 @@ export function BookingSettings({ enabled, lessonMinutes, noticeHours }: { enabl
       <label className="flex items-start gap-2 text-sm">
         <input type="checkbox" checked={on} onChange={(e) => setOn(e.target.checked)} className="mt-0.5 size-4" />
         <span>
-          <strong>Automatske rezervacije</strong> — učenici sami rezerviraju slobodne termine iz vaše tjedne dostupnosti;
+          <strong>Automatske rezervacije.</strong> Učenici sami rezerviraju slobodne termine iz vaše tjedne dostupnosti;
           rezervacija se potvrđuje odmah.
         </span>
       </label>

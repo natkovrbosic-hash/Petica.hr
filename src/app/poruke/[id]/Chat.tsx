@@ -77,12 +77,12 @@ export function Chat({ conversationId, userId, initial }: { conversationId: stri
               {showDay && <p className="my-3 text-center text-xs font-semibold text-slate-500">{d}</p>}
               <div className={`flex ${mine ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[80%] rounded-2xl px-3.5 py-2 text-[15px] whitespace-pre-wrap shadow-sm ${mine ? "rounded-br-sm bg-brand-600 text-white" : "rounded-bl-sm bg-white text-slate-900"}`}
+                  className={`max-w-[80%] rounded-[10px] px-3.5 py-2 text-[15px] whitespace-pre-wrap shadow-sm ${mine ? "rounded-br-sm bg-brand-600 text-white" : "rounded-bl-sm bg-white text-slate-900"}`}
                 >
                   {m.body}
                   <span className={`mt-0.5 block text-right text-[11px] ${mine ? "text-brand-100" : "text-slate-400"}`}>
                     {time(m.created_at)}
-                    {mine && m.read_at ? " · pročitano" : ""}
+                    {mine && m.read_at ? ", pročitano" : ""}
                   </span>
                 </div>
               </div>

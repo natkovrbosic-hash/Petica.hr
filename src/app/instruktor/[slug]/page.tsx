@@ -106,9 +106,9 @@ export default async function TutorPage({ params }: Params) {
               <Avatar name={t.display_name} src={t.photo_url} size={96} />
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="font-display text-[28px] leading-tight font-extrabold">{t.display_name}</h1>
+                  <h1 className="text-[28px] leading-tight font-bold">{t.display_name}</h1>
                   {hitno && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-board px-2.5 py-1 text-xs font-bold text-gold-400">
+                    <span className="inline-flex items-center gap-1 rounded-[4px] bg-board px-1.5 py-0.5 text-[13px] font-bold text-chalk">
                       <Zap className="size-3 fill-current" aria-hidden /> Dostupno odmah, do {timeHM(t.hitno_until!)}
                     </span>
                   )}
@@ -123,7 +123,7 @@ export default async function TutorPage({ params }: Params) {
                   <MapPin className="size-4 shrink-0" aria-hidden />
                   {t.city ?? "—"}
                   {t.county ? `, ${t.county}` : ""}
-                  {t.experience_years != null && ` · ${t.experience_years} god. iskustva`}
+                  {t.experience_years != null && `, ${t.experience_years} god. iskustva`}
                 </p>
               </div>
             </div>
@@ -156,7 +156,7 @@ export default async function TutorPage({ params }: Params) {
                 if (!ls.length) return null;
                 return (
                   <div key={g.title} className="mt-2">
-                    <p className="text-xs font-semibold text-slate-500 uppercase">{g.title}</p>
+                    <p className="text-[14px] font-bold text-slate-600">{g.title}</p>
                     <div className="mt-1 flex flex-wrap gap-1.5">
                       {ls.map((l) => (
                         <span key={l.id} className="chip">{g.title === "Osnovna škola" ? `${l.id.slice(3)}. razred` : l.name}</span>
@@ -227,8 +227,8 @@ export default async function TutorPage({ params }: Params) {
           {t.bookings_enabled && !isSelf && (
             <div id="termin" className="card scroll-mt-20 p-5">
               <div className="mb-3 flex items-baseline justify-between">
-                <h2 className="font-display text-xl font-extrabold">Rezervacija termina</h2>
-                <span className="font-display text-xl font-extrabold">
+                <h2 className="text-xl font-bold">Rezervacija termina</h2>
+                <span className="text-xl font-bold">
                   {formatEur(t.price_eur)} <span className="font-sans text-sm font-medium text-slate-600">/ sat</span>
                 </span>
               </div>
@@ -244,9 +244,9 @@ export default async function TutorPage({ params }: Params) {
           )}
           <div id="kontakt" className="card scroll-mt-20 p-5">
             {t.bookings_enabled && !isSelf ? (
-              <h2 className="font-display text-lg font-extrabold">Upit instruktoru</h2>
+              <h2 className="text-lg font-bold">Upit instruktoru</h2>
             ) : (
-              <p className="font-display text-3xl font-extrabold">
+              <p className="text-3xl font-bold">
                 {formatEur(t.price_eur)} <span className="font-sans text-base font-medium text-slate-500">/ sat</span>
               </p>
             )}
@@ -275,7 +275,7 @@ export default async function TutorPage({ params }: Params) {
       </div>
       {!isSelf && (
         <div className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-between gap-3 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
-          <p className="text-lg font-extrabold">
+          <p className="text-lg font-bold">
             {formatEur(t.price_eur)} <span className="text-sm font-medium text-slate-500">/ sat</span>
           </p>
           <a href={t.bookings_enabled ? "#termin" : "#kontakt"} className="btn-primary">

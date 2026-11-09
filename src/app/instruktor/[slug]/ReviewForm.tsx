@@ -14,7 +14,7 @@ export function ReviewForm({ tutorId, existing }: { tutorId: string; existing: R
 
   if (!open)
     return (
-      <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 text-sm">
+      <div className="flex items-center gap-3 rounded-md bg-slate-50 p-3 text-sm">
         <span className="inline-flex items-center gap-2">
           Vaša recenzija: <Stars value={existing!.rating} />
           {existing!.status === "skrivena" && " (skrivena od moderatora)"}
@@ -33,7 +33,7 @@ export function ReviewForm({ tutorId, existing }: { tutorId: string; existing: R
 
   return (
     <form
-      className="space-y-2 rounded-xl bg-slate-50 p-3"
+      className="space-y-2 rounded-md bg-slate-50 p-3"
       onSubmit={(e) => {
         e.preventDefault();
         start(async () => {

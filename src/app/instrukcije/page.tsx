@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function InstrukcijeIndex() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
-      <h1 className="text-3xl font-extrabold">Instrukcije po predmetima i gradovima</h1>
+      <h1 className="text-3xl font-bold">Instrukcije po predmetima i gradovima</h1>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SUBJECTS.map((s) => (
           <section key={s.slug} className="card p-4">
