@@ -17,7 +17,7 @@ rollback;
 
 -- 2) Korisnik ne može sam sebi dati ulogu admina
 begin;
-select set_config('request.jwt.claim.sub', pg_temp.uid('ucenik@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('ucenik@instrukcije24.test')::text, true);
 set local role authenticated;
 update public.profiles set role = 'admin', full_name = 'Luka (TEST)' where id = auth.uid();
 do $$ begin
@@ -29,7 +29,7 @@ rollback;
 
 -- 3) Instruktor ne može sam sebe odobriti ni istaknuti
 begin;
-select set_config('request.jwt.claim.sub', pg_temp.uid('filip@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('filip@instrukcije24.test')::text, true);
 set local role authenticated;
 update public.tutors set status = 'odobren', featured_until = now() + interval '1 year', rating_avg = 5,
                          headline = 'Novi naslov' where id = auth.uid();
@@ -47,7 +47,7 @@ rollback;
 
 -- 4) Recenzija samo nakon razmjene poruka
 begin;
-select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@instrukcije24.test')::text, true);
 set local role authenticated;
 do $$
 declare v_marko uuid := (select id from public.tutors where slug like 'marko-juric%');
@@ -69,13 +69,13 @@ begin;
 -- instruktor odgovori → korisnik smije ocijeniti
 do $$
 declare v_marko uuid := (select id from public.tutors where slug like 'marko-juric%');
-        v_par uuid := (select id from auth.users where email = 'roditelj@petica.test');
+        v_par uuid := (select id from auth.users where email = 'roditelj@instrukcije24.test');
         v_conv uuid;
 begin
   insert into public.conversations (student_id, tutor_id) values (v_par, v_marko) returning id into v_conv;
   insert into public.messages (conversation_id, sender_id, body) values (v_conv, v_par, 'Bok'), (v_conv, v_marko, 'Pozdrav');
 end $$;
-select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@instrukcije24.test')::text, true);
 set local role authenticated;
 insert into public.reviews (tutor_id, author_id, rating, body)
 select id, auth.uid(), 4, 'ok' from public.tutors where slug like 'marko-juric%';
@@ -92,7 +92,7 @@ rollback;
 
 -- 5) Poruke vide samo sudionici razgovora
 begin;
-select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@instrukcije24.test')::text, true);
 set local role authenticated;
 do $$ begin
   assert (select count(*) from public.messages) = 2, 'roditelj vidi samo svoj razgovor (2 poruke)';
@@ -103,9 +103,9 @@ rollback;
 begin;
 -- tuđi razgovor kao postgres → id; zatim pokušaj kao roditelj
 create temp table t_conv as
-  select c.id from public.conversations c join auth.users u on u.id = c.student_id where u.email = 'ucenik@petica.test';
+  select c.id from public.conversations c join auth.users u on u.id = c.student_id where u.email = 'ucenik@instrukcije24.test';
 grant select on t_conv to authenticated;
-select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@instrukcije24.test')::text, true);
 set local role authenticated;
 do $$ begin
   begin
@@ -127,29 +127,29 @@ begin;
 do $$ begin
   begin
     insert into auth.users (id, email, raw_user_meta_data)
-    values (gen_random_uuid(), 'mladi@petica.test',
+    values (gen_random_uuid(), 'mladi@instrukcije24.test',
             jsonb_build_object('role', 'instruktor', 'full_name', 'Mladi', 'birth_date', (current_date - interval '17 years')::date));
     assert false, 'instruktor mlađi od 18 je prošao';
   exception when raise_exception then null;
   end;
   begin
     insert into auth.users (id, email, raw_user_meta_data)
-    values (gen_random_uuid(), 'dijete@petica.test',
+    values (gen_random_uuid(), 'dijete@instrukcije24.test',
             jsonb_build_object('role', 'korisnik', 'full_name', 'Dijete', 'birth_date', (current_date - interval '15 years')::date));
     assert false, 'korisnik mlađi od 16 je prošao';
   exception when raise_exception then null;
   end;
   -- pokušaj registracije kao admin → postaje obični korisnik
   insert into auth.users (id, email, raw_user_meta_data)
-  values (gen_random_uuid(), 'lukav@petica.test', '{"role":"admin","full_name":"Lukav","birth_date":"1990-01-01"}');
-  assert (select p.role from public.profiles p join auth.users u on u.id = p.id where u.email = 'lukav@petica.test') = 'korisnik',
+  values (gen_random_uuid(), 'lukav@instrukcije24.test', '{"role":"admin","full_name":"Lukav","birth_date":"1990-01-01"}');
+  assert (select p.role from public.profiles p join auth.users u on u.id = p.id where u.email = 'lukav@instrukcije24.test') = 'korisnik',
     'registracija ne smije dati admina';
 end $$;
 rollback;
 
 -- 7) Admin vidi i uređuje sve
 begin;
-select set_config('request.jwt.claim.sub', pg_temp.uid('admin@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('admin@instrukcije24.test')::text, true);
 set local role authenticated;
 update public.tutors set status = 'odobren' where slug like 'filip-saric%';
 do $$ begin
@@ -189,7 +189,7 @@ do $$ begin
   end;
 end $$;
 reset role;
-select set_config('request.jwt.claim.sub', pg_temp.uid('ucenik@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('ucenik@instrukcije24.test')::text, true);
 set local role authenticated;
 do $$
 declare v_ana uuid := (select id from public.tutors where slug like 'ana-horvat%');
@@ -226,7 +226,7 @@ begin
 end $$;
 -- drugi korisnik ne može uzeti isti termin, ne vidi tuđu rezervaciju i ne može je otkazati
 reset role;
-select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@instrukcije24.test')::text, true);
 set local role authenticated;
 do $$
 declare v_ana uuid := (select id from public.tutors where slug like 'ana-horvat%');
@@ -249,7 +249,7 @@ begin
 end $$;
 -- instruktorica otkazuje → termin je ponovno slobodan
 reset role;
-select set_config('request.jwt.claim.sub', pg_temp.uid('ana@petica.test')::text, true);
+select set_config('request.jwt.claim.sub', pg_temp.uid('ana@instrukcije24.test')::text, true);
 set local role authenticated;
 do $$
 declare v_b record;

@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
               currency: "eur",
               unit_amount: Math.round(FEATURED_PRICE_EUR * 100),
               recurring: { interval: "month" },
-              product_data: { name: "Istaknuti profil — Petica.hr" },
+              product_data: { name: "Istaknuti profil — Instrukcije24.hr" },
             },
           },
     ],

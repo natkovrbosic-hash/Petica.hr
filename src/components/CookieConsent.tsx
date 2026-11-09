@@ -2,10 +2,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// Privola za kolačiće. Petica.hr trenutno koristi samo nužne kolačiće (prijava, ova privola).
+// Privola za kolačiće. Instrukcije24.hr trenutno koristi samo nužne kolačiće (prijava, ova privola).
 // Kad se doda analitika, učitavati je samo ako hasConsent("analitika") vrati true.
 
-const KEY = "petica_privola";
+const KEY = "i24_privola";
 type Consent = { nuzni: true; analitika: boolean; datum: string };
 
 export function hasConsent(kind: "analitika") {
@@ -42,8 +42,8 @@ export function CookieConsent() {
       setDetails(true);
       setOpen(true);
     };
-    window.addEventListener("petica:kolacici", reopen);
-    return () => window.removeEventListener("petica:kolacici", reopen);
+    window.addEventListener("i24:kolacici", reopen);
+    return () => window.removeEventListener("i24:kolacici", reopen);
   }, []);
 
   if (!open) return null;
@@ -88,7 +88,7 @@ export function CookieConsent() {
 
 export function CookieSettingsLink() {
   return (
-    <button className="hover:text-brand-700" onClick={() => window.dispatchEvent(new Event("petica:kolacici"))}>
+    <button className="hover:text-brand-700" onClick={() => window.dispatchEvent(new Event("i24:kolacici"))}>
       Postavke kolačića
     </button>
   );

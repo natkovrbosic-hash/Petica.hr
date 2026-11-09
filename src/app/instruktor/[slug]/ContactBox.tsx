@@ -63,7 +63,7 @@ export function ContactBox({
         {pending ? "Slanje…" : "Pošaljite poruku"}
       </button>
       <p className="text-xs text-slate-500">
-        Termin, mjesto i cijenu dogovarate izravno s instruktorom. Petica.hr ne naplaćuje instrukcije.
+        Termin, mjesto i cijenu dogovarate izravno s instruktorom. Instrukcije24.hr ne naplaćuje instrukcije.
       </p>
     </form>
   );

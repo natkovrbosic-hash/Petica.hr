@@ -70,7 +70,7 @@ export function SignupForm({ initialRole, next }: { initialRole: "korisnik" | "i
       </label>
       {role === "instruktor" && (
         <p className="rounded-md bg-slate-50 p-3 text-xs text-slate-600">
-          Kao instruktor sami ste odgovorni za svoje porezne i druge zakonske obveze. Petica.hr samo prodaje oglasni
+          Kao instruktor sami ste odgovorni za svoje porezne i druge zakonske obveze. Instrukcije24.hr samo prodaje oglasni
           prostor i ne sudjeluje u plaćanju instrukcija.
         </p>
       )}

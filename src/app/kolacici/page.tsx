@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Kolačići", alternates: { canonical
 
 const COOKIES = [
   ["sb-…-auth-token", "Nužan", "Prijava (Supabase) — održava vašu sesiju.", "Do odjave / 1 godina"],
-  ["petica_privola", "Nužan", "Pamti vaš odabir o kolačićima.", "6 mjeseci"],
+  ["i24_privola", "Nužan", "Pamti vaš odabir o kolačićima.", "6 mjeseci"],
   ["Stripe (__stripe_mid, __stripe_sid)", "Nužan", "Samo na stranici plaćanja pretplate — sprječavanje prijevara.", "Do 1 godine"],
 ];
 
@@ -14,7 +14,7 @@ export default function CookiesPage() {
   return (
     <LegalPage title="Kolačići" updated="[datum]">
       <p>
-        Kolačići su male datoteke koje stranica sprema u vaš preglednik. Petica.hr trenutno koristi samo nužne kolačiće,
+        Kolačići su male datoteke koje stranica sprema u vaš preglednik. Instrukcije24.hr trenutno koristi samo nužne kolačiće,
         bez kojih prijava i plaćanje ne rade. Analitičke ili marketinške kolačiće koristit ćemo samo uz vašu privolu.
       </p>
       <div className="my-4 overflow-x-auto">

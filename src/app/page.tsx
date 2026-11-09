@@ -100,7 +100,7 @@ export default function HomePage() {
           {[
             ["Odaberite instruktora", "Po predmetu, razini, gradu, cijeni i recenzijama drugih korisnika."],
             ["Rezervirajte termin", "Slobodni termini izračunavaju se iz rasporeda instruktora. Rezervacija se potvrđuje odmah."],
-            ["Platite instruktoru", "Naknadu plaćate izravno instruktoru. Petica.hr ne naplaćuje sate i ne uzima proviziju."],
+            ["Platite instruktoru", "Naknadu plaćate izravno instruktoru. Instrukcije24.hr ne naplaćuje sate i ne uzima proviziju."],
           ].map(([t, d], i) => (
             <li key={t} className="flex gap-3">
               <span className="text-[28px] leading-none font-bold text-board">{i + 1}.</span>

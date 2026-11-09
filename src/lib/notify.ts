@@ -22,7 +22,7 @@ export async function sendEmail({ to, subject, text, link }: { to: string; subje
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: process.env.EMAIL_FROM || `${SITE_NAME} <obavijesti@petica.hr>`, to, subject, html, text: `${text}\n\n${url}` }),
+      body: JSON.stringify({ from: process.env.EMAIL_FROM || `${SITE_NAME} <obavijesti@instrukcije24.hr>`, to, subject, html, text: `${text}\n\n${url}` }),
     });
     if (!res.ok) console.error("[email] Resend greška", res.status, await res.text());
   } catch (e) {

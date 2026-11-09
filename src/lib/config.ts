@@ -1,8 +1,8 @@
 // Postavke platforme iz okoline (.env). Sve se može mijenjati bez promjene koda.
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
-export const SITE_NAME = "Petica.hr";
-export const SUPPORT_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "podrska@petica.hr";
+export const SITE_NAME = "Instrukcije24.hr";
+export const SUPPORT_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "podrska@instrukcije24.hr";
 
 /** Cijena „Istaknutog profila” u €/mj (prikaz + cijena u Stripe Checkoutu kad STRIPE_PRICE_ID nije zadan). 5–9 €. */
 export const FEATURED_PRICE_EUR = Math.min(9, Math.max(5, Number(process.env.NEXT_PUBLIC_FEATURED_PRICE_EUR || 7)));

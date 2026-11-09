@@ -1,8 +1,8 @@
 -- ============================================================================
 -- TESTNI PODACI — samo za lokalni razvoj i demo.
--- Svi računi imaju email @petica.test, oznaku is_test = true i „(TEST)” u imenu.
+-- Svi računi imaju email @instrukcije24.test, oznaku is_test = true i „(TEST)” u imenu.
 -- Lozinka za sve: Test1234!
--- Na produkciji ih obrišite: delete from auth.users where email like '%@petica.test';
+-- Na produkciji ih obrišite: delete from auth.users where email like '%@instrukcije24.test';
 -- ============================================================================
 
 create or replace function pg_temp.seed_user(p_email text, p_name text, p_role text, p_birth date)
@@ -38,59 +38,59 @@ declare
   v_conv uuid;
   r record;
 begin
-  v_admin := pg_temp.seed_user('admin@petica.test', 'Admin (TEST)', 'korisnik', '1985-01-01');
+  v_admin := pg_temp.seed_user('admin@instrukcije24.test', 'Admin (TEST)', 'korisnik', '1985-01-01');
   update public.profiles set role = 'admin' where id = v_admin;
 
-  v_student := pg_temp.seed_user('ucenik@petica.test', 'Luka Učenik (TEST)', 'korisnik', '2008-03-14');
-  v_parent := pg_temp.seed_user('roditelj@petica.test', 'Marija Roditelj (TEST)', 'korisnik', '1980-06-02');
+  v_student := pg_temp.seed_user('ucenik@instrukcije24.test', 'Luka Učenik (TEST)', 'korisnik', '2008-03-14');
+  v_parent := pg_temp.seed_user('roditelj@instrukcije24.test', 'Marija Roditelj (TEST)', 'korisnik', '1980-06-02');
 
   for r in
     select * from (values
-      ('ana@petica.test', 'Ana Horvat (TEST)', '1994-05-10', 'Prof. matematike — razlomci više nisu bauk',
+      ('ana@instrukcije24.test', 'Ana Horvat (TEST)', '1994-05-10', 'Prof. matematike — razlomci više nisu bauk',
        'Profesorica matematike s 8 godina iskustva u osnovnoj i srednjoj školi. Strpljivo, korak po korak, s puno primjera iz svakodnevnog života. Pripremam i za državnu maturu (A i B razina).',
        array['matematika', 'fizika'], array['os-5', 'os-6', 'os-7', 'os-8', 'ss', 'matura'],
        array['kod_mene', 'online'], 18, 'Zagreb', 'Grad Zagreb', 45.81306, 15.97722, 8, true, 'odobren'),
-      ('ivan@petica.test', 'Ivan Kovačević (TEST)', '1990-11-22', 'Engleski za školu, maturu i Cambridge ispite',
+      ('ivan@instrukcije24.test', 'Ivan Kovačević (TEST)', '1990-11-22', 'Engleski za školu, maturu i Cambridge ispite',
        'Magistar anglistike, živio 4 godine u Londonu. Konverzacija, gramatika, priprema za FCE/CAE i državnu maturu.',
        array['engleski-jezik'], array['os-3', 'os-4', 'os-5', 'os-6', 'os-7', 'os-8', 'ss', 'matura', 'fakultet'],
        array['online', 'dolazim'], 20, 'Zagreb', 'Grad Zagreb', 45.80, 15.95, 10, false, 'odobren'),
-      ('petra@petica.test', 'Petra Babić (TEST)', '1998-02-03', 'Hrvatski jezik i lektire bez muke',
+      ('petra@instrukcije24.test', 'Petra Babić (TEST)', '1998-02-03', 'Hrvatski jezik i lektire bez muke',
        'Studentica kroatistike. Pomažem s lektirama, esejima, pravopisom i gramatikom. Esej za maturu — moja specijalnost.',
        array['hrvatski-jezik', 'pomoc-u-ucenju'], array['os-1', 'os-2', 'os-3', 'os-4', 'os-5', 'os-6', 'os-7', 'os-8', 'ss', 'matura'],
        array['kod_mene', 'dolazim', 'online'], 13, 'Split', 'Splitsko-dalmatinska županija', 43.50891, 16.43915, 3, false, 'odobren'),
-      ('marko@petica.test', 'Marko Jurić (TEST)', '1987-07-19', 'Fizika i matematika za srednjoškolce i studente',
+      ('marko@instrukcije24.test', 'Marko Jurić (TEST)', '1987-07-19', 'Fizika i matematika za srednjoškolce i studente',
        'Diplomirani inženjer fizike. Mehanika, elektromagnetizam, termodinamika. Kolokviji i ispiti na FER-u i PMF-u.',
        array['fizika', 'matematika'], array['ss', 'matura', 'fakultet'],
        array['online', 'kod_mene'], 25, 'Rijeka', 'Primorsko-goranska županija', 45.32722, 14.44111, 12, true, 'odobren'),
-      ('lucija@petica.test', 'Lucija Novak (TEST)', '1996-09-30', 'Kemija i biologija — razumjeti, ne štrebati',
+      ('lucija@instrukcije24.test', 'Lucija Novak (TEST)', '1996-09-30', 'Kemija i biologija — razumjeti, ne štrebati',
        'Magistra molekularne biologije. Kemija i biologija za osnovnu i srednju školu te pripremu za maturu i prijemne.',
        array['kemija', 'biologija'], array['os-7', 'os-8', 'ss', 'matura'],
        array['online', 'dolazim'], 17, 'Osijek', 'Osječko-baranjska županija', 45.56178, 18.67641, 5, false, 'odobren'),
-      ('tomislav@petica.test', 'Tomislav Marić (TEST)', '1992-04-12', 'Programiranje: Python, Java, C++',
+      ('tomislav@instrukcije24.test', 'Tomislav Marić (TEST)', '1992-04-12', 'Programiranje: Python, Java, C++',
        'Software inženjer. Učim programiranje od nule, pomažem s projektima i ispitima iz programiranja na fakultetu.',
        array['programiranje', 'informatika'], array['os-7', 'os-8', 'ss', 'fakultet'],
        array['online'], 30, 'Zagreb', 'Grad Zagreb', 45.79, 16.00, 9, false, 'odobren'),
-      ('maja@petica.test', 'Maja Knežević (TEST)', '1983-12-01', 'Njemački za sve uzraste',
+      ('maja@instrukcije24.test', 'Maja Knežević (TEST)', '1983-12-01', 'Njemački za sve uzraste',
        'Profesorica njemačkog jezika, Goethe ispitivač. Priprema za DSD i Goethe certifikate, maturu i rad u inozemstvu.',
        array['njemacki-jezik'], array['os-4', 'os-5', 'os-6', 'os-7', 'os-8', 'ss', 'matura', 'fakultet'],
        array['kod_mene', 'online'], 16, 'Zadar', 'Zadarska županija', 44.11582, 15.22438, 15, false, 'odobren'),
-      ('josip@petica.test', 'Josip Vuković (TEST)', '1999-08-08', 'Matematika za osnovnu školu',
+      ('josip@instrukcije24.test', 'Josip Vuković (TEST)', '1999-08-08', 'Matematika za osnovnu školu',
        'Student matematike. Strpljiv sam i jasno objašnjavam — tablica množenja, razlomci, jednadžbe, priprema za ispite.',
        array['matematika', 'pomoc-u-ucenju'], array['os-1', 'os-2', 'os-3', 'os-4', 'os-5', 'os-6', 'os-7', 'os-8'],
        array['dolazim', 'kod_mene'], 12, 'Velika Gorica', 'Zagrebačka županija', 45.7125, 16.0756, 2, false, 'odobren'),
-      ('ema@petica.test', 'Ema Pavlović (TEST)', '1991-01-25', 'Povijest i geografija — priče koje se pamte',
+      ('ema@instrukcije24.test', 'Ema Pavlović (TEST)', '1991-01-25', 'Povijest i geografija — priče koje se pamte',
        'Profesorica povijesti i geografije. Pripreme za ispite, maturu i natjecanja.',
        array['povijest', 'geografija'], array['os-5', 'os-6', 'os-7', 'os-8', 'ss', 'matura'],
        array['online', 'kod_mene'], 14, 'Varaždin', 'Varaždinska županija', 46.30444, 16.33778, 7, false, 'odobren'),
-      ('karlo@petica.test', 'Karlo Božić (TEST)', '1989-03-17', 'Ekonomija, računovodstvo i statistika',
+      ('karlo@instrukcije24.test', 'Karlo Božić (TEST)', '1989-03-17', 'Ekonomija, računovodstvo i statistika',
        'Ekonomist, 10 godina u računovodstvu. Pomoć studentima ekonomije: mikro, makro, statistika, računovodstvo.',
        array['ekonomija', 'racunovodstvo', 'statistika', 'matematika'], array['ss', 'fakultet'],
        array['online'], 22, 'Pula', 'Istarska županija', 44.87028, 13.84556, 10, false, 'odobren'),
-      ('nina@petica.test', 'Nina Grgić (TEST)', '1997-10-05', 'Talijanski i engleski uz osmijeh',
+      ('nina@instrukcije24.test', 'Nina Grgić (TEST)', '1997-10-05', 'Talijanski i engleski uz osmijeh',
        'Prevoditeljica. Talijanski i engleski za osnovce i srednjoškolce, konverzacija za odrasle.',
        array['talijanski-jezik', 'engleski-jezik'], array['os-1', 'os-2', 'os-3', 'os-4', 'os-5', 'os-6', 'ss'],
        array['dolazim', 'online'], 15, 'Rijeka', 'Primorsko-goranska županija', 45.34, 14.40, 4, false, 'odobren'),
-      ('filip@petica.test', 'Filip Šarić (TEST)', '2000-06-21', 'Matura iz matematike — A razina',
+      ('filip@instrukcije24.test', 'Filip Šarić (TEST)', '2000-06-21', 'Matura iz matematike — A razina',
        'Student FER-a, 5 na maturi iz matematike. Rješavamo stare ispite i učimo strategiju rješavanja.',
        array['matematika', 'fizika'], array['ss', 'matura'],
        array['online', 'kod_mene'], 15, 'Split', 'Splitsko-dalmatinska županija', 43.51, 16.47, 3, false, 'na_cekanju')

@@ -36,7 +36,7 @@ export async function GET() {
   return new NextResponse(JSON.stringify(body, null, 2), {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Content-Disposition": `attachment; filename="petica-moji-podaci.json"`,
+      "Content-Disposition": `attachment; filename="instrukcije24-moji-podaci.json"`,
       "Cache-Control": "no-store",
     },
   });

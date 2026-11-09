@@ -55,12 +55,12 @@ export default async function SubjectCityPage({ params }: Params) {
     {
       q: `Koliko koštaju instrukcije iz ${s.genitive} — ${city.name}?`,
       a: avg
-        ? `Instruktori ${s.genitive} na Petica.hr${local.length ? ` u okolici (${city.name})` : ""} u prosjeku traže oko ${avg} € po satu. Cijenu određuje svaki instruktor i dogovarate je izravno s njim.`
+        ? `Instruktori ${s.genitive} na Instrukcije24.hr${local.length ? ` u okolici (${city.name})` : ""} u prosjeku traže oko ${avg} € po satu. Cijenu određuje svaki instruktor i dogovarate je izravno s njim.`
         : `Cijenu određuje svaki instruktor; najčešće je između 10 i 25 € po satu. Dogovarate je izravno s instruktorom.`,
     },
     {
       q: "Kako se plaćaju instrukcije?",
-      a: "Izravno instruktoru, na način koji dogovorite (gotovina, uplata…). Petica.hr ne naplaćuje sate instrukcija i ne uzima proviziju.",
+      a: "Izravno instruktoru, na način koji dogovorite (gotovina, uplata…). Instrukcije24.hr ne naplaćuje sate instrukcija i ne uzima proviziju.",
     },
     {
       q: "Mogu li instrukcije biti online?",

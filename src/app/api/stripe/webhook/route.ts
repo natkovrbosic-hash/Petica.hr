@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import type Stripe from "stripe";
 import { getStripe, syncSubscription } from "@/lib/stripe";
 
-// Stripe → Petica.hr. U Stripe Dashboardu dodajte endpoint /api/stripe/webhook s događajima:
+// Stripe → Instrukcije24.hr. U Stripe Dashboardu dodajte endpoint /api/stripe/webhook s događajima:
 // checkout.session.completed, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted
 export async function POST(request: NextRequest) {
   const stripe = getStripe();

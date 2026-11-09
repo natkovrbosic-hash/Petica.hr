@@ -88,7 +88,7 @@ export default async function MyTutorProfilePage({ searchParams }: { searchParam
       </section>
 
       <p className="text-xs text-slate-500">
-        Kao instruktor sami ste odgovorni za svoje porezne i druge zakonske obveze (npr. prijava prihoda). Petica.hr
+        Kao instruktor sami ste odgovorni za svoje porezne i druge zakonske obveze (npr. prijava prihoda). Instrukcije24.hr
         ne posreduje u plaćanju instrukcija.
       </p>
     </div>

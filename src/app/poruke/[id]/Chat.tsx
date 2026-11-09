@@ -117,7 +117,7 @@ export function Chat({ conversationId, userId, initial }: { conversationId: stri
       </form>
       {err && <p className="bg-white px-4 pb-2 text-sm text-red-600">{err}</p>}
       <p className="bg-white px-4 pb-3 text-[11px] text-slate-400 sm:rounded-b-2xl">
-        Ne dijelite podatke o kartici. Plaćanje instrukcija dogovarate izravno — Petica.hr nikad ne traži uplatu za sate.
+        Ne dijelite podatke o kartici. Plaćanje instrukcija dogovarate izravno — Instrukcije24.hr nikad ne traži uplatu za sate.
       </p>
     </>
   );

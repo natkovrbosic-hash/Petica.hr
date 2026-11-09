@@ -268,7 +268,7 @@ export default async function TutorPage({ params }: Params) {
             )}
           </div>
           <p className="px-1 text-xs text-slate-500">
-            Instruktor je samostalno odgovoran za svoje porezne i zakonske obveze. Petica.hr samo prodaje oglasni prostor i
+            Instruktor je samostalno odgovoran za svoje porezne i zakonske obveze. Instrukcije24.hr samo prodaje oglasni prostor i
             ne sudjeluje u dogovoru ni plaćanju instrukcija.
           </p>
         </aside>
