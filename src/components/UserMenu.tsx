@@ -25,8 +25,10 @@ export function UserMenu() {
       const { data } = await supabase.auth.getSession();
       const user = data.session?.user;
       if (!user) return setMe(null);
-      const { data: p } = await supabase.from("profiles").select("full_name, role").eq("id", user.id).maybeSingle();
-      setMe(p ? { name: p.full_name, role: p.role } : null);
+      const { data: p, error } = await supabase.from("profiles").select("full_name, role").eq("id", user.id).maybeSingle();
+      // ako baza nije dostupna iz preglednika, izbornik se gradi iz podataka sesije
+      const meta = user.user_metadata as { full_name?: string; role?: string };
+      setMe(p ? { name: p.full_name, role: p.role } : error ? { name: meta.full_name ?? user.email ?? "?", role: meta.role ?? "korisnik" } : null);
       const { data: convs } = await supabase.rpc("my_conversations");
       setUnread(((convs ?? []) as { unread: number }[]).reduce((s, c) => s + Number(c.unread), 0));
     };
