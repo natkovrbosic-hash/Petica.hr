@@ -31,7 +31,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
   const other = (list as { id: string; other_name: string }[] | null)?.find((c) => c.id === id)?.other_name ?? "Razgovor";
 
   return (
-    <div className="mx-auto flex h-[calc(100dvh-3.5rem)] max-w-2xl flex-col px-0 sm:px-4 sm:py-4">
+    <div className="mx-auto flex h-[calc(100dvh-3.75rem)] max-w-2xl flex-col px-0 sm:px-4 sm:py-4">
       <div className="flex items-center gap-3 border-b border-slate-200 bg-white px-4 py-3 sm:rounded-t-2xl sm:border">
         <Link href="/poruke" className="text-xl text-slate-600" aria-label="Natrag na poruke"><ArrowLeft className="size-5" /></Link>
         <div className="min-w-0 flex-1">

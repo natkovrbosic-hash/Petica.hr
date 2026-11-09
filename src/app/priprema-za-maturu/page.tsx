@@ -42,7 +42,7 @@ export default async function MaturaPage() {
       </div>
 
       <h2 className="mt-8 text-xl font-bold">Instruktori za maturu</h2>
-      <div className="mt-3 grid gap-3 md:grid-cols-2">
+      <div className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-2">
         {tutors.map((t) => (
           <TutorCard key={t.id} t={t} />
         ))}

@@ -2,7 +2,7 @@
 import { Star } from "lucide-react";
 import { subjectName } from "@/lib/subjects";
 
-export function Avatar({ name, src, size = 64 }: { name: string; src?: string | null; size?: number }) {
+export function Avatar({ name, src, size = 64, round = false }: { name: string; src?: string | null; size?: number; round?: boolean }) {
   const initials = name
     .replace(/\(TEST\)/, "")
     .trim()
@@ -18,13 +18,13 @@ export function Avatar({ name, src, size = 64 }: { name: string; src?: string | 
         alt={name}
         width={size}
         height={size}
-        className="shrink-0 rounded-2xl object-cover"
+        className={`shrink-0 object-cover ${round ? "rounded-full" : "rounded-2xl"}`}
         style={{ width: size, height: size }}
       />
     );
   return (
     <div
-      className="grid shrink-0 place-items-center rounded-2xl bg-brand-100 font-bold text-brand-800"
+      className={`grid shrink-0 place-items-center bg-brand-100 font-display font-extrabold text-board ${round ? "rounded-full" : "rounded-2xl"}`}
       style={{ width: size, height: size, fontSize: size / 2.8 }}
       aria-hidden
     >
@@ -35,19 +35,21 @@ export function Avatar({ name, src, size = 64 }: { name: string; src?: string | 
 
 export function Stars({ value, count, size = "sm" }: { value: number; count?: number; size?: "sm" | "lg" }) {
   const v = Number(value) || 0;
+  if (count === 0)
+    return <span className={`${size === "lg" ? "text-base" : "text-sm"} font-medium text-slate-600`}>Novi profil · još bez recenzija</span>;
   return (
     <span className={`inline-flex items-center gap-1 ${size === "lg" ? "text-base" : "text-sm"}`}>
       <span className="inline-flex" aria-hidden>
         {[1, 2, 3, 4, 5].map((n) => (
           <Star
             key={n}
-            className={`${size === "lg" ? "size-4.5" : "size-3.5"} ${n <= Math.round(v) ? "fill-gold-500 text-gold-500" : "fill-slate-200 text-slate-200"}`}
+            className={`${size === "lg" ? "size-4.5" : "size-3.5"} ${n <= Math.round(v) ? "fill-gold-500 text-gold-500" : "fill-slate-300 text-slate-300"}`}
           />
         ))}
       </span>
       {count !== undefined && (
         <span className="text-slate-600">
-          {count > 0 ? `${v.toFixed(1).replace(".", ",")} (${count})` : "Još nema recenzija"}
+          {`${v.toFixed(1).replace(".", ",")} (${count})`}
         </span>
       )}
       <span className="sr-only">Ocjena {v.toFixed(1)} od 5</span>
@@ -57,7 +59,7 @@ export function Stars({ value, count, size = "sm" }: { value: number; count?: nu
 
 export function FeaturedBadge() {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-gold-100 px-2 py-0.5 text-xs font-bold text-gold-700">
+    <span className="inline-flex items-center gap-1 rounded-full bg-gold-400 px-2.5 py-1 text-xs font-bold text-board">
       <Star className="size-3 fill-current" aria-hidden /> Istaknuto
     </span>
   );
@@ -66,7 +68,7 @@ export function FeaturedBadge() {
 export function TestBadge() {
   return (
     <span
-      className="inline-flex items-center rounded-full bg-fuchsia-100 px-2 py-0.5 text-xs font-bold text-fuchsia-800"
+      className="inline-flex items-center rounded-full border border-dashed border-slate-500 px-2 py-0.5 text-[11px] font-bold text-slate-700"
       title="Ovo je testni profil za demonstraciju — nije stvarni instruktor."
     >
       TESTNI PROFIL
@@ -76,12 +78,12 @@ export function TestBadge() {
 
 export function SubjectChips({ subjects, max = 4 }: { subjects: string[]; max?: number }) {
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <>
       {subjects.slice(0, max).map((s) => (
-        <span key={s} className="chip bg-brand-50 text-brand-800">{subjectName(s)}</span>
+        <span key={s} className="chip">{subjectName(s)}</span>
       ))}
       {subjects.length > max && <span className="chip">+{subjects.length - max}</span>}
-    </div>
+    </>
   );
 }
 

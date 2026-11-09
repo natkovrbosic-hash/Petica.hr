@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Check, MapPin } from "lucide-react";
+import { Check, MapPin, Zap } from "lucide-react";
 import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { getSession } from "@/lib/auth";
 import { SITE_URL } from "@/lib/config";
 import { citySlug } from "@/lib/cities";
 import { LEVELS, modeName, subjectBySlug } from "@/lib/subjects";
-import { isFeatured, type Availability, type Review, type Tutor } from "@/lib/types";
+import { isFeatured, isHitno, type Availability, type Review, type Slot, type Tutor } from "@/lib/types";
 import { AvailabilityGrid } from "@/components/AvailabilityGrid";
 import { Avatar, FeaturedBadge, Notice, Stars, TestBadge, formatDate, formatEur } from "@/components/ui";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { ReportButton } from "@/components/ReportButton";
 import { ContactBox } from "./ContactBox";
 import { ReviewForm } from "./ReviewForm";
+import { BookingWidget } from "./BookingWidget";
+import { timeHM } from "@/lib/time";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -44,14 +46,17 @@ export default async function TutorPage({ params }: Params) {
 
   const { user, profile } = await getSession();
   const supabase = await createClient();
-  const [{ data: availability }, { data: reviewsRaw }, conv, fav, canReview, myReview] = await Promise.all([
+  const [{ data: availability }, { data: reviewsRaw }, conv, fav, canReview, myReview, { data: slotsRaw }] = await Promise.all([
     supabase.from("availability").select("*").eq("tutor_id", t.id).order("weekday").order("start_time"),
     supabase.from("reviews").select("*").eq("tutor_id", t.id).eq("status", "objavljena").order("created_at", { ascending: false }),
     user ? supabase.from("conversations").select("id").eq("student_id", user.id).eq("tutor_id", t.id).maybeSingle() : null,
     user ? supabase.from("favorites").select("tutor_id").eq("user_id", user.id).eq("tutor_id", t.id).maybeSingle() : null,
     user ? supabase.rpc("can_review", { p_tutor: t.id }) : null,
     user ? supabase.from("reviews").select("*").eq("tutor_id", t.id).eq("author_id", user.id).maybeSingle() : null,
+    supabase.rpc("free_slots", { p_tutor: t.id, p_days: 14 }),
   ]);
+  const slots = (slotsRaw ?? []) as Slot[];
+  const hitno = isHitno(t);
   const reviews = (reviewsRaw ?? []) as Review[];
   const isSelf = user?.id === t.id;
 
@@ -94,14 +99,19 @@ export default async function TutorPage({ params }: Params) {
           <Notice kind="warn">Ovo je <strong>testni profil</strong> za demonstraciju — osoba i podaci nisu stvarni.</Notice>
         </div>
       )}
-      <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div className="space-y-6">
           <section className="card p-5">
             <div className="flex gap-4">
               <Avatar name={t.display_name} src={t.photo_url} size={96} />
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="text-2xl font-extrabold text-slate-900">{t.display_name}</h1>
+                  <h1 className="font-display text-[28px] leading-tight font-extrabold">{t.display_name}</h1>
+                  {hitno && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-board px-2.5 py-1 text-xs font-bold text-gold-400">
+                      <Zap className="size-3 fill-current" aria-hidden /> Slobodan sada do {timeHM(t.hitno_until!)}
+                    </span>
+                  )}
                   {isFeatured(t) && <FeaturedBadge />}
                   {t.is_test && <TestBadge />}
                 </div>
@@ -121,7 +131,7 @@ export default async function TutorPage({ params }: Params) {
               {t.subjects.map((s) => {
                 const sub = subjectBySlug(s);
                 return t.city && sub ? (
-                  <Link key={s} href={`/instrukcije/${s}/${citySlug(t.city)}`} className="chip bg-brand-50 py-1.5 text-sm text-brand-800 hover:bg-brand-100">
+                  <Link key={s} href={`/instrukcije/${s}/${citySlug(t.city)}`} className="chip py-1.5 text-sm hover:bg-gold-100">
                     {sub.name}
                   </Link>
                 ) : (
@@ -214,10 +224,32 @@ export default async function TutorPage({ params }: Params) {
         </div>
 
         <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
+          {t.bookings_enabled && !isSelf && (
+            <div id="termin" className="card scroll-mt-20 p-5">
+              <div className="mb-3 flex items-baseline justify-between">
+                <h2 className="font-display text-xl font-extrabold">Rezerviraj termin</h2>
+                <span className="font-display text-xl font-extrabold">
+                  {formatEur(t.price_eur)} <span className="font-sans text-sm font-medium text-slate-600">/ sat</span>
+                </span>
+              </div>
+              <BookingWidget
+                tutorId={t.id}
+                slug={t.slug}
+                modes={t.modes}
+                slots={slots}
+                lessonMinutes={t.lesson_minutes}
+                loggedIn={Boolean(user)}
+              />
+            </div>
+          )}
           <div id="kontakt" className="card scroll-mt-20 p-5">
-            <p className="text-3xl font-extrabold">
-              {formatEur(t.price_eur)} <span className="text-base font-medium text-slate-500">/ sat</span>
-            </p>
+            {t.bookings_enabled && !isSelf ? (
+              <h2 className="font-display text-lg font-extrabold">Ili pošalji poruku</h2>
+            ) : (
+              <p className="font-display text-3xl font-extrabold">
+                {formatEur(t.price_eur)} <span className="font-sans text-base font-medium text-slate-500">/ sat</span>
+              </p>
+            )}
             <div className="mt-4">
               <ContactBox
                 tutorId={t.id}
@@ -246,7 +278,9 @@ export default async function TutorPage({ params }: Params) {
           <p className="text-lg font-extrabold">
             {formatEur(t.price_eur)} <span className="text-sm font-medium text-slate-500">/ sat</span>
           </p>
-          <a href="#kontakt" className="btn-primary">Pošalji poruku</a>
+          <a href={t.bookings_enabled ? "#termin" : "#kontakt"} className="btn-primary">
+            {t.bookings_enabled ? "Rezerviraj termin" : "Pošalji poruku"}
+          </a>
         </div>
       )}
       <div className="h-16 lg:hidden" aria-hidden />

@@ -113,6 +113,11 @@ begin
     where (d + length(r.email)) % 3 <> 0 or d = 6;
   end loop;
 
+  -- Rezervacije i hitno: Josip je „slobodan sada” 4 sata, Ivan traži 24 h najave i drži sat od 90 min
+  update public.tutors set hitno_until = now() + interval '4 hours', booking_notice_hours = 2 where slug like 'josip-vukovic-test-%';
+  update public.tutors set lesson_minutes = 90, booking_notice_hours = 24 where slug like 'ivan-kovacevic-test-%';
+  update public.tutors set lesson_minutes = 45 where slug like 'petra-babic-test-%';
+
   -- Razgovor učenika i Ane + recenzija (dopuštena jer su obje strane poslale poruku)
   select id into v_t from public.tutors where slug like 'ana-horvat-test-%';
   insert into public.conversations (student_id, tutor_id) values (v_student, v_t) returning id into v_conv;

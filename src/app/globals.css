@@ -1,28 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #eef4ff;
-  --color-brand-100: #dbe6fe;
-  --color-brand-200: #bfd3fe;
-  --color-brand-500: #3b6ef6;
-  --color-brand-600: #2554e8;
-  --color-brand-700: #1d43c9;
-  --color-brand-800: #1e3a9f;
-  --color-brand-900: #1e347d;
-  --color-gold-100: #fff4cc;
-  --color-gold-400: #fbc430;
-  --color-gold-500: #f2a900;
-  --color-gold-700: #a86b00;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Dizajn „Školska ploča”: tamnozelena ploča, kreda, žuti naglasak, topli papir */
+  --color-board: #12352d;
+  --color-chalk: #f3f1e7;
+  --color-paper: #f7f5ee;
+  --color-line: #e4e1d5;
+  --color-ink: #12352d;
+
+  --color-brand-50: #eef3ef;
+  --color-brand-100: #dce7df;
+  --color-brand-200: #bfd3c6;
+  --color-brand-300: #9dbba9;
+  --color-brand-500: #2f6b5a;
+  --color-brand-600: #1c4a3e;
+  --color-brand-700: #12352d;
+  --color-brand-800: #0b231e;
+  --color-brand-900: #081a16;
+
+  --color-gold-100: #fcefc7;
+  --color-gold-400: #f2c14e;
+  --color-gold-500: #e0a21b;
+  --color-gold-700: #7a5200;
+
+  /* sivi tonovi s primjesom zelene (zamjenjuju slate u cijeloj aplikaciji) */
+  --color-slate-50: #f7f5ee;
+  --color-slate-100: #efece2;
+  --color-slate-200: #e4e1d5;
+  --color-slate-300: #d6d3c6;
+  --color-slate-400: #9aa59f;
+  --color-slate-500: #5f6e67;
+  --color-slate-600: #4a5e57;
+  --color-slate-700: #2c4a42;
+  --color-slate-800: #1c3b33;
+  --color-slate-900: #12352d;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   color-scheme: light;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
 body {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--color-paper);
+  color: var(--color-ink);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -31,15 +61,15 @@ body {
 }
 
 @utility btn-primary {
-  @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800;
+  @apply btn bg-board text-chalk hover:bg-brand-800 active:bg-brand-900;
 }
 
 @utility btn-secondary {
-  @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-50;
+  @apply btn border border-line bg-white text-ink hover:border-brand-300;
 }
 
 @utility btn-gold {
-  @apply btn bg-gold-400 text-slate-900 hover:bg-gold-500;
+  @apply btn bg-gold-400 text-board hover:bg-gold-500;
 }
 
 @utility btn-danger {
@@ -51,7 +81,7 @@ body {
 }
 
 @utility input {
-  @apply block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 focus:outline-none;
+  @apply block w-full rounded-xl border-[1.5px] border-slate-300 bg-white px-3.5 py-2.5 text-base text-ink placeholder:text-slate-500 focus:border-brand-500 focus:ring-2 focus:ring-gold-400/60 focus:outline-none;
 }
 
 @utility label {
@@ -59,15 +89,15 @@ body {
 }
 
 @utility card {
-  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  @apply rounded-[18px] border-[1.5px] border-line bg-white;
 }
 
 @utility chip {
-  @apply inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700;
+  @apply inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-800;
 }
 
 @utility link {
-  @apply font-semibold text-brand-700 underline-offset-2 hover:underline;
+  @apply font-semibold text-brand-600 underline decoration-gold-400 decoration-2 underline-offset-2 hover:text-board;
 }
 
 @layer components {

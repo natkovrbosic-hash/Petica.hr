@@ -29,10 +29,10 @@ export function AvailabilityEditor({ initial }: { initial: Availability[] }) {
             <div className="flex-1 space-y-2">
               {daySlots.length === 0 && <p className="pt-2 text-sm text-slate-400">Nedostupno</p>}
               {daySlots.map(({ s, i }) => (
-                <div key={i} className="flex items-center gap-2">
-                  <input type="time" step={900} className="input w-auto" value={s.start_time} onChange={(e) => update(i, { start_time: e.target.value })} aria-label={`${d.name} od`} />
+                <div key={i} className="flex items-center gap-1.5">
+                  <input type="time" step={900} className="input w-[6.5rem] px-2" value={s.start_time} onChange={(e) => update(i, { start_time: e.target.value })} aria-label={`${d.name} od`} />
                   <span>–</span>
-                  <input type="time" step={900} className="input w-auto" value={s.end_time} onChange={(e) => update(i, { end_time: e.target.value })} aria-label={`${d.name} do`} />
+                  <input type="time" step={900} className="input w-[6.5rem] px-2" value={s.end_time} onChange={(e) => update(i, { end_time: e.target.value })} aria-label={`${d.name} do`} />
                   <button type="button" className="btn-sm text-red-600" onClick={() => remove(i)} aria-label="Ukloni termin"><X className="size-4" /></button>
                 </div>
               ))}

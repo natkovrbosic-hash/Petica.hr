@@ -21,6 +21,7 @@ Vite + Express + Prisma), pa su komponente napisane iznova.
 | `reviews` | ocjena 1–5 + tekst; INSERT dopušten samo ako su obje strane poslale poruku (`can_review()`) |
 | `favorites` | korisnik ↔ instruktor |
 | `reports` | prijave recenzija / profila / poruka |
+| `bookings` | rezervirani termini (potvrđen / otkazan), bez preklapanja (exclusion constraint) |
 | `subscriptions` | Stripe pretplata „Istaknuti profil” (piše je samo webhook) |
 
 Ključne funkcije: `search_tutors(...)` (filteri + udaljenost + sortiranje, istaknuti prvi),
@@ -36,6 +37,7 @@ Ključne funkcije: `search_tutors(...)` (filteri + udaljenost + sortiranje, ista
 - `/priprema-za-maturu`
 - `/prijava`, `/registracija`, `/zaboravljena-lozinka`, `/auth/callback`
 - `/poruke`, `/poruke/[id]` — real-time poruke
+- `/termini` — nadolazeći i prošli termini, otkazivanje
 - `/moj-racun` — podaci, obavijesti, favoriti, izvoz podataka, brisanje računa
 - `/moj-profil` — uređivanje profila instruktora, dostupnost, slika, „Istaknuti profil” (Stripe)
 - `/admin` — profili na čekanju, recenzije, prijave, pretplate

@@ -62,6 +62,24 @@ export default function TermsPage() {
         „operaterom platforme” s obvezom izvješćivanja te uskladiti tekst.]
       </p>
 
+      <h2>4a. Rezervacija termina i hitne instrukcije</h2>
+      <ul>
+        <li>
+          Instruktor određuje tjednu dostupnost, trajanje sata i minimalnu najavu. Korisnik može rezervirati slobodan
+          termin koji platforma automatski izračuna iz tih postavki; rezervacija je potvrđena odmah i obje strane dobivaju
+          obavijest.
+        </li>
+        <li>
+          Opcijom „Slobodan sam sada” instruktor označava da je dostupan za hitne instrukcije u navedenom razdoblju, i izvan
+          redovne dostupnosti.
+        </li>
+        <li>
+          Rezervacija je dogovor korisnika i instruktora. Petica.hr ne naplaćuje termin, ne jamči da će se instrukcija
+          održati i ne odgovara za otkazivanje ili nedolazak. Termin mogu otkazati obje strane u „Termini”; uvjete
+          otkazivanja (npr. naknadu za kasno otkazivanje) dogovaraju izravno.
+        </li>
+      </ul>
+
       <h2>5. Istaknuti profil (pretplata za instruktore)</h2>
       <ul>
         <li>Osnovni profil instruktora je besplatan.</li>

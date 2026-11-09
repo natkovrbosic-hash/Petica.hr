@@ -21,6 +21,7 @@ export type Filters = {
   doba: string | null;
   sort: string;
   str: number;
+  hitno: boolean;
 };
 
 type SP = Record<string, string | string[] | undefined>;
@@ -50,6 +51,7 @@ export function parseFilters(sp: SP): Filters {
     doba,
     sort,
     str: Math.max(1, num(one(sp.str)) ?? 1),
+    hitno: one(sp.hitno) === "1",
   };
 }
 
@@ -86,6 +88,7 @@ export async function runSearch(f: Filters): Promise<SearchOutcome> {
     p_sort: effective.sort === "udaljenost" && !city ? "preporuceno" : effective.sort,
     p_limit: PAGE_SIZE,
     p_offset: (effective.str - 1) * PAGE_SIZE,
+    p_hitno: effective.hitno,
   });
   if (error) {
     console.error("[search]", error);
@@ -109,6 +112,7 @@ export function filtersToQuery(f: Partial<Filters>) {
   if (f.dani?.length) p.set("dani", f.dani.join(","));
   if (f.doba) p.set("doba", f.doba);
   if (f.sort && f.sort !== "preporuceno") p.set("sort", f.sort);
+  if (f.hitno) p.set("hitno", "1");
   if (f.str && f.str > 1) p.set("str", String(f.str));
   return p.toString();
 }

@@ -41,37 +41,40 @@ export function UserMenu() {
   if (!me)
     return (
       <>
-        <Link href="/za-instruktore" className="hidden rounded-lg px-2.5 py-2 hover:bg-slate-100 sm:block">
+        <Link href="/za-instruktore" className="hidden rounded-full px-3 py-2 hover:bg-white/10 sm:block">
           Za instruktore
         </Link>
-        <Link href="/prijava" className="btn-primary btn-sm">
+        <Link href="/prijava" className="rounded-full border-[1.5px] border-chalk/50 px-3.5 py-2 hover:bg-white/10">
           Prijava
         </Link>
       </>
     );
   return (
     <>
-      <Link href="/poruke" className="relative rounded-lg px-2.5 py-2 hover:bg-slate-100">
+      <Link href="/termini" className="hidden rounded-full px-3 py-2 hover:bg-white/10 sm:block">
+        Termini
+      </Link>
+      <Link href="/poruke" className="relative rounded-full px-3 py-2 hover:bg-white/10">
         Poruke
         {unread > 0 && (
-          <span className="absolute -top-0.5 right-0 grid min-w-5 place-items-center rounded-full bg-red-600 px-1 text-[11px] font-bold text-white">
+          <span className="absolute -top-1.5 -right-1.5 grid min-w-5 place-items-center rounded-full bg-gold-400 px-1 text-[11px] font-bold text-board">
             {unread}
           </span>
         )}
       </Link>
       {me.role === "instruktor" && (
-        <Link href="/moj-profil" className="hidden rounded-lg px-2.5 py-2 hover:bg-slate-100 sm:block">
+        <Link href="/moj-profil" className="hidden rounded-full px-3 py-2 hover:bg-white/10 md:block">
           Moj profil
         </Link>
       )}
       {me.role === "admin" && (
-        <Link href="/admin" className="rounded-lg px-2.5 py-2 text-brand-700 hover:bg-slate-100">
+        <Link href="/admin" className="rounded-full px-3 py-2 text-gold-400 hover:bg-white/10">
           Admin
         </Link>
       )}
       <Link
         href="/moj-racun"
-        className="grid size-9 place-items-center rounded-full bg-brand-100 text-sm font-bold text-brand-800"
+        className="grid size-9 place-items-center rounded-full bg-chalk text-sm font-bold text-board"
         aria-label="Moj račun"
         title={me.name}
       >

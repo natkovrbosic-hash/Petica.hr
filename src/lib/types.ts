@@ -32,6 +32,10 @@ export type Tutor = {
   experience_years: number | null;
   experience: string | null;
   featured_until: string | null;
+  bookings_enabled: boolean;
+  lesson_minutes: number;
+  booking_notice_hours: number;
+  hitno_until: string | null;
   rating_avg: number;
   rating_count: number;
   is_test: boolean;
@@ -44,7 +48,7 @@ export type SearchResult = Pick<
   Tutor,
   | "id" | "slug" | "display_name" | "headline" | "photo_url" | "subjects" | "levels" | "modes" | "price_eur"
   | "city" | "county" | "experience_years" | "rating_avg" | "rating_count" | "is_test"
-> & { is_featured: boolean; distance_km: number | null; total_count: number };
+> & { is_featured: boolean; distance_km: number | null; is_hitno?: boolean; next_slot?: string | null; total_count: number };
 
 export type Availability = { id?: number; tutor_id?: string; weekday: number; start_time: string; end_time: string };
 
@@ -81,3 +85,24 @@ export type ConversationListItem = {
 
 export const isFeatured = (t: Pick<Tutor, "featured_until">) =>
   Boolean(t.featured_until && new Date(t.featured_until) > new Date());
+
+export type Booking = {
+  id: string;
+  tutor_id: string;
+  student_id: string;
+  starts_at: string;
+  ends_at: string;
+  mode: string;
+  note: string | null;
+  is_hitno: boolean;
+  status: "potvrden" | "otkazan";
+  cancel_reason: string | null;
+  cancelled_by: string | null;
+  other_name: string;
+  tutor_slug: string;
+  i_am_tutor: boolean;
+};
+
+export type Slot = { starts_at: string; ends_at: string; is_hitno: boolean };
+
+export const isHitno = (t: { hitno_until?: string | null }) => Boolean(t.hitno_until && new Date(t.hitno_until) > new Date());

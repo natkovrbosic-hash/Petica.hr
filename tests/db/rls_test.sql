@@ -176,4 +176,103 @@ do $$ begin
 end $$;
 rollback;
 
+
+-- 9) Rezervacije prema radnom vremenu
+begin;
+-- anonimni ne može rezervirati
+set local role anon;
+do $$ begin
+  begin
+    perform public.book_lesson((select id from public.tutors where slug like 'ana-horvat%'), now() + interval '2 days', 'online');
+    assert false, 'anon rezervacija je prošla';
+  exception when insufficient_privilege or raise_exception then null;
+  end;
+end $$;
+reset role;
+select set_config('request.jwt.claim.sub', pg_temp.uid('ucenik@petica.test')::text, true);
+set local role authenticated;
+do $$
+declare v_ana uuid := (select id from public.tutors where slug like 'ana-horvat%');
+        v_slot timestamptz;
+        v_id uuid;
+begin
+  -- izravan unos u tablicu nije dopušten
+  begin
+    insert into public.bookings (tutor_id, student_id, starts_at, ends_at, mode)
+    values (v_ana, auth.uid(), now() + interval '3 days', now() + interval '3 days 1 hour', 'online');
+    assert false, 'izravan unos rezervacije je prošao';
+  exception when insufficient_privilege then null;
+  end;
+  -- termin izvan radnog vremena (nedjelja 3 h ujutro) se odbija
+  begin
+    perform public.book_lesson(v_ana, date_trunc('week', now()) + interval '13 days 3 hours', 'online');
+    assert false, 'termin izvan radnog vremena je prošao';
+  exception when raise_exception then null;
+  end;
+  -- način koji instruktorica ne nudi
+  v_slot := (select min(starts_at) from public.free_slots(v_ana, 14));
+  assert v_slot >= now() + interval '12 hours', 'poštuje se minimalna najava';
+  begin
+    perform public.book_lesson(v_ana, v_slot, 'dolazim');
+    assert false, 'nepostojeći način je prošao';
+  exception when raise_exception then null;
+  end;
+  v_id := public.book_lesson(v_ana, v_slot, 'online', 'Razlomci');
+  assert (select status from public.bookings where id = v_id) = 'potvrden', 'rezervacija je odmah potvrđena';
+  assert not exists (select 1 from public.free_slots(v_ana, 14) where starts_at = v_slot), 'termin više nije slobodan';
+  assert not exists (select 1 from public.free_slots(v_ana, 14) where starts_at = v_slot + interval '30 min'), 'preklapajući termin nije slobodan';
+  assert (select count(*) from public.my_bookings()) = 1, 'my_bookings';
+  assert exists (select 1 from public.messages where body like 'Rezervirao/la sam termin%'), 'obavijest u razgovoru';
+end $$;
+-- drugi korisnik ne može uzeti isti termin, ne vidi tuđu rezervaciju i ne može je otkazati
+reset role;
+select set_config('request.jwt.claim.sub', pg_temp.uid('roditelj@petica.test')::text, true);
+set local role authenticated;
+do $$
+declare v_ana uuid := (select id from public.tutors where slug like 'ana-horvat%');
+        v_b record;
+begin
+  assert (select count(*) from public.bookings) = 0, 'tuđe rezervacije nisu vidljive';
+  reset role;
+  select * into v_b from public.bookings limit 1;
+  set local role authenticated;
+  begin
+    perform public.book_lesson(v_ana, v_b.starts_at, 'online');
+    assert false, 'dvostruka rezervacija je prošla';
+  exception when raise_exception then null;
+  end;
+  begin
+    perform public.cancel_booking(v_b.id, 'hack');
+    assert false, 'tuđe otkazivanje je prošlo';
+  exception when raise_exception then null;
+  end;
+end $$;
+-- instruktorica otkazuje → termin je ponovno slobodan
+reset role;
+select set_config('request.jwt.claim.sub', pg_temp.uid('ana@petica.test')::text, true);
+set local role authenticated;
+do $$
+declare v_b record;
+begin
+  select * into v_b from public.bookings limit 1;
+  assert v_b.id is not null, 'instruktorica vidi rezervaciju';
+  perform public.cancel_booking(v_b.id, 'Bolesna sam');
+  assert (select status from public.bookings where id = v_b.id) = 'otkazan', 'otkazano';
+  assert exists (select 1 from public.free_slots(v_b.tutor_id, 14) where starts_at = v_b.starts_at), 'termin opet slobodan';
+end $$;
+rollback;
+
+-- 10) Hitne instrukcije
+begin;
+set local role anon;
+do $$
+declare v_josip uuid := (select id from public.tutors where slug like 'josip-vukovic%');
+begin
+  assert (select min(starts_at) from public.free_slots(v_josip, 1)) < now() + interval '1 hour', 'hitno: termin unutar sat vremena';
+  assert (select bool_or(is_hitno) from public.free_slots(v_josip, 1)), 'hitni termini označeni';
+  assert exists (select 1 from public.search_tutors(p_hitno => true) where slug like 'josip-vukovic%' and is_hitno), 'hitno u pretrazi';
+  assert not exists (select 1 from public.search_tutors(p_hitno => true) where slug like 'ivan-kovacevic%'), 'Ivan (24 h najave) nije hitan';
+end $$;
+rollback;
+
 select 'RLS testovi prošli ✓' as rezultat;

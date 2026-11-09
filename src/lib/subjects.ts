@@ -104,4 +104,5 @@ export const SORTS = [
   { id: "cijena_asc", name: "Najniža cijena" },
   { id: "cijena_desc", name: "Najviša cijena" },
   { id: "udaljenost", name: "Najbliži" },
+  { id: "termin", name: "Najraniji slobodan termin" },
 ] as const;

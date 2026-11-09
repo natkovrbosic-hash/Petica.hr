@@ -9,6 +9,7 @@ import { TutorProfileForm } from "./TutorProfileForm";
 import { AvailabilityEditor } from "./AvailabilityEditor";
 import { PhotoUpload } from "./PhotoUpload";
 import { FeaturedBox } from "./FeaturedBox";
+import { BookingSettings, HitnoBox } from "./BookingSettings";
 import { FEATURED_PRICE_EUR, launchPromo, stripeEnabled } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Moj profil instruktora", robots: { index: false } };
@@ -49,6 +50,8 @@ export default async function MyTutorProfilePage({ searchParams }: { searchParam
       <h1 className="text-2xl font-extrabold">Moj profil instruktora</h1>
       <StatusBanner t={t} />
 
+      <HitnoBox hitnoUntil={t.hitno_until} approved={t.status === "odobren"} />
+
       <FeaturedBox
         approved={t.status === "odobren"}
         featuredUntil={t.featured_until}
@@ -71,8 +74,17 @@ export default async function MyTutorProfilePage({ searchParams }: { searchParam
 
       <section className="card p-5">
         <h2 className="text-lg font-bold">Tjedna dostupnost</h2>
-        <p className="mb-4 text-sm text-slate-600">Okvirni termini u kojima ste obično slobodni — korisnici po njima filtriraju pretragu.</p>
+        <p className="mb-4 text-sm text-slate-600">Vaše radno vrijeme za instrukcije. Iz njega se automatski nude termini za rezervaciju.</p>
         <AvailabilityEditor initial={(availability ?? []) as Availability[]} />
+      </section>
+
+      <section className="card p-5">
+        <h2 className="text-lg font-bold">Rezervacije termina</h2>
+        <p className="mb-4 text-sm text-slate-600">
+          Slobodni termini računaju se automatski iz tjedne dostupnosti i već rezerviranih sati.{" "}
+          <a className="link" href="/termini">Moji termini</a>
+        </p>
+        <BookingSettings enabled={t.bookings_enabled} lessonMinutes={t.lesson_minutes} noticeHours={t.booking_notice_hours} />
       </section>
 
       <p className="text-xs text-slate-500">

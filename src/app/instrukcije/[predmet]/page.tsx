@@ -61,7 +61,7 @@ export default async function SubjectPage({ params }: Params) {
         ))}
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
+      <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-2">
         <section>
           <h2 className="text-xl font-bold">Instruktori {s.genitive}</h2>
           <div className="mt-3 space-y-3">

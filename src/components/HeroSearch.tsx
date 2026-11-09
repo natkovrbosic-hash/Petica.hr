@@ -20,13 +20,13 @@ export function HeroSearch() {
 
   return (
     <form
-      className="card p-3 sm:p-4"
+      className="rounded-[18px] bg-paper p-4 text-ink"
       onSubmit={(e) => {
         e.preventDefault();
         go({ q: q.trim(), grad });
       }}
     >
-      <label htmlFor="hero-q" className="label">Što vam treba?</label>
+      <label htmlFor="hero-q" className="label text-slate-600">Napiši svojim riječima</label>
       <input
         id="hero-q"
         className="input"
@@ -38,7 +38,7 @@ export function HeroSearch() {
       <div className="mt-2 min-h-8">
         {matches.length > 0 ? (
           <div className="flex flex-wrap items-center gap-1.5 text-sm">
-            <span className="text-slate-600">Predlažemo:</span>
+            <span className="text-slate-600">To je</span>
             {matches.map((m) => {
               const s = subjectBySlug(m.subject)!;
               return (
@@ -46,7 +46,7 @@ export function HeroSearch() {
                   type="button"
                   key={m.subject}
                   onClick={() => go({ predmet: s.slug, grad })}
-                  className="chip bg-brand-50 text-brand-800 hover:bg-brand-100"
+                  className="rounded-full bg-gold-400 px-3 py-1.5 text-sm font-semibold text-board hover:bg-gold-500"
                 >
                   {s.name}
                 </button>
@@ -56,7 +56,7 @@ export function HeroSearch() {
         ) : (
           <div className="flex flex-wrap gap-1.5 text-xs text-slate-500">
             {EXAMPLES.map((ex) => (
-              <button type="button" key={ex} className="chip hover:bg-slate-200" onClick={() => setQ(ex)}>
+              <button type="button" key={ex} className="chip bg-white hover:bg-slate-200" onClick={() => setQ(ex)}>
                 {ex}
               </button>
             ))}
@@ -77,7 +77,7 @@ export function HeroSearch() {
             <option key={c.name} value={c.name} />
           ))}
         </datalist>
-        <button className="btn-primary sm:w-40" type="submit">Pronađi instruktora</button>
+        <button className="btn-primary sm:w-44" type="submit">Pokaži instruktore</button>
       </div>
     </form>
   );

@@ -118,7 +118,7 @@ export default async function SubjectCityPage({ params }: Params) {
 
       <section className="mt-8">
         <h2 className="text-xl font-bold">Instruktori — {city.name} i okolica</h2>
-        <div className="mt-3 grid gap-3 md:grid-cols-2">
+        <div className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-2">
           {local.map((t) => (
             <TutorCard key={t.id} t={t} />
           ))}
@@ -133,7 +133,7 @@ export default async function SubjectCityPage({ params }: Params) {
       {online.length > 0 && (
         <section className="mt-10">
           <h2 className="text-xl font-bold">Online instruktori {s.genitive}</h2>
-          <div className="mt-3 grid gap-3 md:grid-cols-2">
+          <div className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 md:grid-cols-2">
             {online.map((t) => (
               <TutorCard key={t.id} t={t} />
             ))}

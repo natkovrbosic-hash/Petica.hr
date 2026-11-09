@@ -21,6 +21,12 @@ export function SearchFilters({ f }: { f: Filters }) {
       </button>
       <form action="/pretraga" className={`${open ? "mt-4 block" : "hidden"} space-y-4 lg:block`}>
         {f.q && <input type="hidden" name="q" value={f.q} />}
+        <label className="flex items-start gap-2 rounded-xl bg-gold-100 p-3 text-sm">
+          <input type="checkbox" name="hitno" value="1" defaultChecked={f.hitno} className="mt-0.5 size-4" />
+          <span>
+            <strong>Hitno</strong> — instruktori slobodni sada ili u sljedeća 24 sata
+          </span>
+        </label>
         <div>
           <label className="label" htmlFor="f-predmet">Predmet</label>
           <select id="f-predmet" name="predmet" defaultValue={f.predmet ?? ""} className="input">
@@ -106,7 +112,7 @@ export function SearchFilters({ f }: { f: Filters }) {
             {WEEKDAYS.map((d) => (
               <label key={d.id} className="cursor-pointer">
                 <input type="checkbox" name="dani" value={d.id} defaultChecked={f.dani.includes(d.id)} className="peer sr-only" />
-                <span className="chip peer-checked:bg-brand-600 peer-checked:text-white peer-focus-visible:ring-2">{d.short}</span>
+                <span className="chip py-1.5 peer-checked:bg-board peer-checked:text-chalk peer-focus-visible:ring-2">{d.short}</span>
               </label>
             ))}
           </div>

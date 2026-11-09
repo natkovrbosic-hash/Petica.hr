@@ -20,6 +20,7 @@ export default function PrivacyPage() {
           održavanja, grad i županija, dostupnost, iskustvo, ocjene.
         </li>
         <li><strong>Poruke:</strong> sadržaj razgovora između korisnika i instruktora.</li>
+        <li><strong>Termini:</strong> rezervirani termini, način održavanja, napomena i razlog otkazivanja.</li>
         <li><strong>Recenzije, favoriti i prijave.</strong></li>
         <li>
           <strong>Pretplata instruktora:</strong> status i razdoblje pretplate. Podatke o kartici obrađuje isključivo
