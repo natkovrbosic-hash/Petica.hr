@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-200: #bfd3fe;
+  --color-brand-500: #3b6ef6;
+  --color-brand-600: #2554e8;
+  --color-brand-700: #1d43c9;
+  --color-brand-800: #1e3a9f;
+  --color-brand-900: #1e347d;
+  --color-gold-100: #fff4cc;
+  --color-gold-400: #fbc430;
+  --color-gold-500: #f2a900;
+  --color-gold-700: #a86b00;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[15px] font-semibold transition disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800;
+}
+
+@utility btn-secondary {
+  @apply btn border border-slate-300 bg-white text-slate-800 hover:bg-slate-50;
+}
+
+@utility btn-gold {
+  @apply btn bg-gold-400 text-slate-900 hover:bg-gold-500;
+}
+
+@utility btn-danger {
+  @apply btn bg-red-600 text-white hover:bg-red-700;
+}
+
+@utility btn-sm {
+  @apply min-h-9 rounded-lg px-3 py-1.5 text-sm;
+}
+
+@utility input {
+  @apply block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 focus:outline-none;
+}
+
+@utility label {
+  @apply mb-1.5 block text-sm font-semibold text-slate-700;
+}
+
+@utility card {
+  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+}
+
+@utility chip {
+  @apply inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700;
+}
+
+@utility link {
+  @apply font-semibold text-brand-700 underline-offset-2 hover:underline;
+}
+
+@layer components {
+  .prose-legal h2 {
+    @apply mt-8 mb-2 text-lg font-bold text-slate-900;
+  }
+  .prose-legal p,
+  .prose-legal li {
+    @apply mb-2 text-[15px] leading-relaxed text-slate-700;
+  }
+  .prose-legal ul {
+    @apply list-disc pl-5;
+  }
+}
