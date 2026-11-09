@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import { AUTH_COOKIE } from "./cookie";
 import { NextResponse, type NextRequest } from "next/server";
 
 const PROTECTED = ["/poruke", "/moj-racun", "/moj-profil", "/admin", "/termini"];
@@ -8,6 +9,7 @@ export async function updateSession(request: NextRequest) {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return response;
 
   const supabase = createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
+    cookieOptions: { name: AUTH_COOKIE },
     cookies: {
       getAll() {
         return request.cookies.getAll();

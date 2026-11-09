@@ -100,9 +100,16 @@ export async function saveAvailability(slots: { weekday: number; start_time: str
 export async function setPhoto(url: string | null) {
   const { supabase, id } = await currentTutorId();
   if (!id) return { error: "Niste prijavljeni kao instruktor." };
-  const base = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/avatars/${id}/`;
-  if (url && !url.startsWith(base)) return { error: "Neispravna slika." };
-  const { error } = await supabase.from("tutors").update({ photo_url: url }).eq("id", id);
+  // dopuštene su samo slike iz vlastite mape u spremniku „avatars”
+  const marker = "/storage/v1/object/public/avatars/";
+  let stored: string | null = null;
+  if (url) {
+    const rest = url.slice(url.indexOf(marker) + marker.length);
+    if (!url.includes(marker) || !rest.startsWith(`${id}/`) || rest.includes("..")) return { error: "Neispravna slika." };
+    const base = process.env.NEXT_PUBLIC_SUPABASE_PROXY === "1" ? "/sb" : process.env.NEXT_PUBLIC_SUPABASE_URL;
+    stored = `${base}${marker}${rest}`;
+  }
+  const { error } = await supabase.from("tutors").update({ photo_url: stored }).eq("id", id);
   if (error) return { error: "Spremanje slike nije uspjelo." };
   revalidatePath("/moj-profil");
   return { ok: "Slika je spremljena." };
