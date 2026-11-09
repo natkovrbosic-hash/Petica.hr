@@ -131,7 +131,7 @@ async function Profiles({ supabase, status }: { supabase: SB; status: string }) 
               <Link href={`/instruktor/${t.slug}`} className="font-bold hover:underline" target="_blank">{t.display_name}</Link>
               <span className="chip">{STATUS_LABEL[t.status]}</span>
               {t.is_test && <TestBadge />}
-              {isFeatured(t) && <span className="chip bg-gold-100 text-gold-700">★ do {formatDate(t.featured_until!)}</span>}
+              {isFeatured(t) && <span className="chip bg-gold-100 text-gold-700">Istaknut do {formatDate(t.featured_until!)}</span>}
             </div>
             <p className="text-sm text-slate-700">{t.headline}</p>
             <p className="text-xs text-slate-600">
@@ -215,7 +215,7 @@ async function Reports({ supabase }: { supabase: SB }) {
               {!target && "Sadržaj je obrisan."}
               {target && r.target_type === "recenzija" && (
                 <>
-                  „{String(target.body ?? "(bez teksta)")}” — {String(target.rating)}★ za{" "}
+                  „{String(target.body ?? "(bez teksta)")}” — ocjena {String(target.rating)}/5 za{" "}
                   <Link className="link" href={`/instruktor/${(target.tutors as { slug: string }).slug}`}>
                     {(target.tutors as { display_name: string }).display_name}
                   </Link>

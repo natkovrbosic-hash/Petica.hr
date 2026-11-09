@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import type { Message } from "@/lib/types";
@@ -32,7 +33,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
   return (
     <div className="mx-auto flex h-[calc(100dvh-3.5rem)] max-w-2xl flex-col px-0 sm:px-4 sm:py-4">
       <div className="flex items-center gap-3 border-b border-slate-200 bg-white px-4 py-3 sm:rounded-t-2xl sm:border">
-        <Link href="/poruke" className="text-xl text-slate-600" aria-label="Natrag na poruke">←</Link>
+        <Link href="/poruke" className="text-xl text-slate-600" aria-label="Natrag na poruke"><ArrowLeft className="size-5" /></Link>
         <div className="min-w-0 flex-1">
           <p className="truncate font-bold">{other}</p>
           {isStudent && (

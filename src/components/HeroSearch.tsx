@@ -48,7 +48,7 @@ export function HeroSearch() {
                   onClick={() => go({ predmet: s.slug, grad })}
                   className="chip bg-brand-50 text-brand-800 hover:bg-brand-100"
                 >
-                  {s.emoji} {s.name}
+                  {s.name}
                 </button>
               );
             })}

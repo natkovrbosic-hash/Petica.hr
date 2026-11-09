@@ -1,5 +1,6 @@
 "use client";
 import { useState, useTransition } from "react";
+import { Heart } from "lucide-react";
 import { toggleFavorite } from "@/app/actions/social";
 
 export function FavoriteButton({ tutorId, initial }: { tutorId: string; initial: boolean }) {
@@ -20,7 +21,8 @@ export function FavoriteButton({ tutorId, initial }: { tutorId: string; initial:
         })
       }
     >
-      {on ? "♥ U favoritima" : "♡ Spremi u favorite"}
+      <Heart className={`size-4 ${on ? "fill-current" : ""}`} aria-hidden />
+      {on ? "U favoritima" : "Spremi u favorite"}
     </button>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Check, MapPin } from "lucide-react";
 import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { getSession } from "@/lib/auth";
@@ -108,8 +109,9 @@ export default async function TutorPage({ params }: Params) {
                 <div className="mt-2">
                   <Stars value={t.rating_avg} count={t.rating_count} size="lg" />
                 </div>
-                <p className="mt-2 text-sm text-slate-600">
-                  📍 {t.city ?? "—"}
+                <p className="mt-2 flex flex-wrap items-center gap-x-1 text-sm text-slate-600">
+                  <MapPin className="size-4 shrink-0" aria-hidden />
+                  {t.city ?? "—"}
                   {t.county ? `, ${t.county}` : ""}
                   {t.experience_years != null && ` · ${t.experience_years} god. iskustva`}
                 </p>
@@ -120,7 +122,7 @@ export default async function TutorPage({ params }: Params) {
                 const sub = subjectBySlug(s);
                 return t.city && sub ? (
                   <Link key={s} href={`/instrukcije/${s}/${citySlug(t.city)}`} className="chip bg-brand-50 py-1.5 text-sm text-brand-800 hover:bg-brand-100">
-                    {sub.emoji} {sub.name}
+                    {sub.name}
                   </Link>
                 ) : (
                   <span key={s} className="chip">{sub?.name ?? s}</span>
@@ -158,8 +160,8 @@ export default async function TutorPage({ params }: Params) {
               <h2 className="text-lg font-bold">Način</h2>
               <ul className="mt-2 space-y-1 text-sm text-slate-700">
                 {t.modes.map((m) => (
-                  <li key={m}>
-                    ✓ {modeName(m)}
+                  <li key={m} className="flex items-center gap-2">
+                    <Check className="size-4 text-emerald-600" aria-hidden /> {modeName(m)}
                     {m === "dolazim" && t.travel_radius_km > 0 ? ` (do ${t.travel_radius_km} km)` : ""}
                   </li>
                 ))}

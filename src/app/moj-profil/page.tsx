@@ -18,7 +18,7 @@ function StatusBanner({ t }: { t: Tutor }) {
     return (
       <Notice kind="ok">
         Profil je odobren i vidljiv u pretrazi.{" "}
-        <Link className="link" href={`/instruktor/${t.slug}`}>Pogledaj javni profil →</Link>
+        <Link className="link" href={`/instruktor/${t.slug}`}>Pogledaj javni profil</Link>
       </Notice>
     );
   if (t.status === "odbijen")

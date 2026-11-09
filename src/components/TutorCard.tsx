@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 import type { SearchResult } from "@/lib/types";
 import { levelsSummary, modeName } from "@/lib/subjects";
 import { Avatar, FeaturedBadge, Stars, SubjectChips, TestBadge, formatEur } from "./ui";
@@ -29,8 +30,9 @@ export function TutorCard({ t }: { t: SearchResult }) {
       </div>
       <div className="mt-3 space-y-2">
         <SubjectChips subjects={t.subjects} />
-        <p className="text-xs text-slate-600">
-          📍 {t.city ?? "—"}
+        <p className="flex flex-wrap items-center gap-x-1 text-xs text-slate-600">
+          <MapPin className="size-3.5 shrink-0" aria-hidden />
+          {t.city ?? "—"}
           {t.distance_km != null && t.distance_km > 0 ? ` · ${String(t.distance_km).replace(".", ",")} km` : ""} ·{" "}
           {t.modes.map((m) => modeName(m, true)).join(", ")}
           {t.levels.length > 0 && ` · ${levelsSummary(t.levels)}`}

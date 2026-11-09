@@ -1,5 +1,6 @@
 "use client";
 import { useState, useTransition } from "react";
+import { X } from "lucide-react";
 import { saveAvailability } from "../actions/tutor";
 import { WEEKDAYS } from "@/lib/subjects";
 import { Notice } from "@/components/ui";
@@ -32,7 +33,7 @@ export function AvailabilityEditor({ initial }: { initial: Availability[] }) {
                   <input type="time" step={900} className="input w-auto" value={s.start_time} onChange={(e) => update(i, { start_time: e.target.value })} aria-label={`${d.name} od`} />
                   <span>–</span>
                   <input type="time" step={900} className="input w-auto" value={s.end_time} onChange={(e) => update(i, { end_time: e.target.value })} aria-label={`${d.name} do`} />
-                  <button type="button" className="btn-sm text-red-600" onClick={() => remove(i)} aria-label="Ukloni termin">✕</button>
+                  <button type="button" className="btn-sm text-red-600" onClick={() => remove(i)} aria-label="Ukloni termin"><X className="size-4" /></button>
                 </div>
               ))}
             </div>

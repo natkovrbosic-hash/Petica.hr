@@ -112,8 +112,8 @@ export default async function SubjectCityPage({ params }: Params) {
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         <Link href={pretraga} className="btn-primary btn-sm">Filtriraj (razina, cijena, termin)</Link>
-        <Link href={`${pretraga}&razina=matura`} className="btn-secondary btn-sm">🎓 Za maturu</Link>
-        <Link href={`${pretraga}&nacin=dolazim`} className="btn-secondary btn-sm">🏠 Dolazak kući</Link>
+        <Link href={`${pretraga}&razina=matura`} className="btn-secondary btn-sm">Za maturu</Link>
+        <Link href={`${pretraga}&nacin=dolazim`} className="btn-secondary btn-sm">Dolazak kući</Link>
       </div>
 
       <section className="mt-8">

@@ -31,12 +31,12 @@ export default function HomePage() {
         >
           <div>
             <p className="text-xs font-bold tracking-wider text-gold-400 uppercase">Istaknuto</p>
-            <h2 className="mt-1 text-xl font-extrabold sm:text-2xl">Priprema za državnu maturu 🎓</h2>
+            <h2 className="mt-1 text-xl font-extrabold sm:text-2xl">Priprema za državnu maturu</h2>
             <p className="mt-1 text-sm text-brand-100">
               Matematika, hrvatski, engleski i izborni predmeti — instruktori koji znaju kako izgleda ispit.
             </p>
           </div>
-          <span className="btn bg-white text-brand-800 hover:bg-brand-50">Pogledaj instruktore →</span>
+          <span className="btn bg-white text-brand-800 hover:bg-brand-50">Pogledaj instruktore</span>
         </Link>
       </section>
 
@@ -49,7 +49,6 @@ export default function HomePage() {
               href={`/instrukcije/${s.slug}`}
               className="card flex items-center gap-2 p-3 text-sm font-semibold text-slate-800 hover:border-brand-300"
             >
-              <span className="text-xl" aria-hidden>{s.emoji}</span>
               {s.name}
             </Link>
           ))}

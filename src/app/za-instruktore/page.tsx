@@ -2,6 +2,7 @@ export const revalidate = 3600;
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Check, Star } from "lucide-react";
 import { FEATURED_PRICE_EUR, launchPromo } from "@/lib/config";
 import { formatDate } from "@/components/ui";
 
@@ -21,7 +22,7 @@ export default function ForTutorsPage() {
       </p>
       {promo.active && (
         <div className="mt-6 rounded-2xl bg-emerald-50 p-4 text-emerald-900">
-          🎉 <strong>Lansiranje:</strong> istaknuti profil je besplatan do {formatDate(promo.until)}
+          <strong>Lansiranje:</strong> istaknuti profil je besplatan do {formatDate(promo.until)}
         </div>
       )}
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -29,22 +30,22 @@ export default function ForTutorsPage() {
           <h2 className="text-lg font-bold">Osnovni profil</h2>
           <p className="mt-1 text-3xl font-extrabold">0 €</p>
           <ul className="mt-4 space-y-2 text-sm text-slate-700">
-            <li>✓ Profil s fotografijom, predmetima i cijenom</li>
-            <li>✓ Prikaz u pretrazi i na stranicama gradova</li>
-            <li>✓ Neograničene poruke</li>
-            <li>✓ Recenzije učenika i roditelja</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Profil s fotografijom, predmetima i cijenom</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Prikaz u pretrazi i na stranicama gradova</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Neograničene poruke</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Recenzije učenika i roditelja</li>
           </ul>
         </div>
         <div className="card border-gold-400 p-6 ring-1 ring-gold-400">
-          <h2 className="text-lg font-bold">★ Istaknuti profil</h2>
+          <h2 className="flex items-center gap-2 text-lg font-bold"><Star className="size-5 fill-gold-400 text-gold-500" aria-hidden /> Istaknuti profil</h2>
           <p className="mt-1 text-3xl font-extrabold">
             {FEATURED_PRICE_EUR} € <span className="text-base font-medium text-slate-500">/ mj</span>
           </p>
           <ul className="mt-4 space-y-2 text-sm text-slate-700">
-            <li>✓ Sve iz osnovnog profila</li>
-            <li>✓ Na vrhu rezultata pretrage</li>
-            <li>✓ Oznaka „Istaknuto” i zlatni okvir</li>
-            <li>✓ Otkaz u bilo kojem trenutku</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Sve iz osnovnog profila</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Na vrhu rezultata pretrage</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Oznaka „Istaknuto” i zlatni okvir</li>
+            <li className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden />Otkaz u bilo kojem trenutku</li>
           </ul>
         </div>
       </div>

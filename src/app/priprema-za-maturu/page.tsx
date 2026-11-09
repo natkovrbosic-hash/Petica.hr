@@ -22,7 +22,7 @@ export default async function MaturaPage() {
     <div className="mx-auto max-w-6xl px-4 py-8">
       <div className="rounded-2xl bg-brand-700 p-6 text-white sm:p-8">
         <p className="text-xs font-bold tracking-wider text-gold-400 uppercase">Istaknuta kategorija</p>
-        <h1 className="mt-1 text-3xl font-extrabold sm:text-4xl">Priprema za državnu maturu 🎓</h1>
+        <h1 className="mt-1 text-3xl font-extrabold sm:text-4xl">Priprema za državnu maturu</h1>
         <p className="mt-2 max-w-2xl text-brand-100">
           Instruktori koji znaju kako izgleda ispit: rješavanje starih ispita, strategija, esej, A i B razina. Počnite na
           vrijeme — najbolji termini se popune do proljeća.
@@ -35,7 +35,7 @@ export default async function MaturaPage() {
           const s = subjectBySlug(slug)!;
           return (
             <Link key={slug} href={`/pretraga?predmet=${slug}&razina=matura`} className="card flex items-center gap-2 p-3 text-sm font-semibold hover:border-brand-300">
-              <span className="text-xl">{s.emoji}</span> {s.name}
+              {s.name}
             </Link>
           );
         })}

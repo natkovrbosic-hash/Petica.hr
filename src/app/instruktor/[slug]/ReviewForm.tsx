@@ -1,5 +1,7 @@
 "use client";
 import { useState, useTransition } from "react";
+import { Star } from "lucide-react";
+import { Stars } from "@/components/ui";
 import { deleteReview, submitReview } from "../../actions/social";
 import type { Review } from "@/lib/types";
 
@@ -13,8 +15,8 @@ export function ReviewForm({ tutorId, existing }: { tutorId: string; existing: R
   if (!open)
     return (
       <div className="flex items-center gap-3 rounded-xl bg-slate-50 p-3 text-sm">
-        <span>
-          Vaša recenzija: {"★".repeat(existing!.rating)}
+        <span className="inline-flex items-center gap-2">
+          Vaša recenzija: <Stars value={existing!.rating} />
           {existing!.status === "skrivena" && " (skrivena od moderatora)"}
         </span>
         <button className="link" onClick={() => setOpen(true)}>Uredi</button>
@@ -51,9 +53,9 @@ export function ReviewForm({ tutorId, existing }: { tutorId: string; existing: R
             aria-checked={rating === n}
             aria-label={`${n} od 5`}
             onClick={() => setRating(n)}
-            className={`text-3xl leading-none ${n <= rating ? "text-gold-500" : "text-slate-300"}`}
+            className="p-0.5"
           >
-            ★
+            <Star className={`size-8 ${n <= rating ? "fill-gold-500 text-gold-500" : "fill-slate-200 text-slate-200"}`} />
           </button>
         ))}
       </div>

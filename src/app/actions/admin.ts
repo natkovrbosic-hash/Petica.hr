@@ -36,7 +36,7 @@ export async function setTutorStatus(tutorId: string, status: "odobren" | "odbij
     .eq("id", tutorId);
   if (error) return { error: "Nije uspjelo." };
   if (status === "odobren")
-    await emailUser(tutorId, "Vaš profil je odobren 🎉", "Vaš profil instruktora na Petica.hr je odobren i sada je vidljiv u pretrazi.", "/moj-profil");
+    await emailUser(tutorId, "Vaš profil je odobren", "Vaš profil instruktora na Petica.hr je odobren i sada je vidljiv u pretrazi.", "/moj-profil");
   if (status === "odbijen")
     await emailUser(
       tutorId,

@@ -18,7 +18,7 @@ export default function InstrukcijeIndex() {
           <section key={s.slug} className="card p-4">
             <h2 className="font-bold">
               <Link href={`/instrukcije/${s.slug}`} className="hover:text-brand-700">
-                {s.emoji} Instrukcije iz {s.genitive}
+                Instrukcije iz {s.genitive}
               </Link>
             </h2>
             <ul className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-slate-600">

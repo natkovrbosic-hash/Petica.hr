@@ -42,7 +42,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
 
       {profile.role === "instruktor" && (
         <Link href="/moj-profil" className="card block p-5 hover:border-brand-300">
-          <p className="font-bold">Moj profil instruktora →</p>
+          <p className="font-bold">Moj profil instruktora</p>
           <p className="text-sm text-slate-600">Uredite profil, dostupnost i istaknuti profil.</p>
         </Link>
       )}

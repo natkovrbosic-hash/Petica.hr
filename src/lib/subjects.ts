@@ -5,30 +5,29 @@ export type Subject = {
   name: string;
   /** „Instrukcije iz …” */
   genitive: string;
-  emoji: string;
 };
 
 export const SUBJECTS: Subject[] = [
-  { slug: "matematika", name: "Matematika", genitive: "matematike", emoji: "➗" },
-  { slug: "hrvatski-jezik", name: "Hrvatski jezik", genitive: "hrvatskog jezika", emoji: "📖" },
-  { slug: "engleski-jezik", name: "Engleski jezik", genitive: "engleskog jezika", emoji: "🇬🇧" },
-  { slug: "njemacki-jezik", name: "Njemački jezik", genitive: "njemačkog jezika", emoji: "🇩🇪" },
-  { slug: "fizika", name: "Fizika", genitive: "fizike", emoji: "🧲" },
-  { slug: "kemija", name: "Kemija", genitive: "kemije", emoji: "⚗️" },
-  { slug: "biologija", name: "Biologija", genitive: "biologije", emoji: "🧬" },
-  { slug: "informatika", name: "Informatika", genitive: "informatike", emoji: "💻" },
-  { slug: "programiranje", name: "Programiranje", genitive: "programiranja", emoji: "👩‍💻" },
-  { slug: "talijanski-jezik", name: "Talijanski jezik", genitive: "talijanskog jezika", emoji: "🇮🇹" },
-  { slug: "francuski-jezik", name: "Francuski jezik", genitive: "francuskog jezika", emoji: "🇫🇷" },
-  { slug: "spanjolski-jezik", name: "Španjolski jezik", genitive: "španjolskog jezika", emoji: "🇪🇸" },
-  { slug: "latinski-jezik", name: "Latinski jezik", genitive: "latinskog jezika", emoji: "🏛️" },
-  { slug: "povijest", name: "Povijest", genitive: "povijesti", emoji: "📜" },
-  { slug: "geografija", name: "Geografija", genitive: "geografije", emoji: "🌍" },
-  { slug: "filozofija", name: "Filozofija i logika", genitive: "filozofije i logike", emoji: "🤔" },
-  { slug: "ekonomija", name: "Ekonomija", genitive: "ekonomije", emoji: "📈" },
-  { slug: "racunovodstvo", name: "Računovodstvo", genitive: "računovodstva", emoji: "🧾" },
-  { slug: "statistika", name: "Statistika", genitive: "statistike", emoji: "📊" },
-  { slug: "pomoc-u-ucenju", name: "Pomoć u učenju (razredna nastava)", genitive: "razredne nastave", emoji: "✏️" },
+  { slug: "matematika", name: "Matematika", genitive: "matematike" },
+  { slug: "hrvatski-jezik", name: "Hrvatski jezik", genitive: "hrvatskog jezika" },
+  { slug: "engleski-jezik", name: "Engleski jezik", genitive: "engleskog jezika" },
+  { slug: "njemacki-jezik", name: "Njemački jezik", genitive: "njemačkog jezika" },
+  { slug: "fizika", name: "Fizika", genitive: "fizike" },
+  { slug: "kemija", name: "Kemija", genitive: "kemije" },
+  { slug: "biologija", name: "Biologija", genitive: "biologije" },
+  { slug: "informatika", name: "Informatika", genitive: "informatike" },
+  { slug: "programiranje", name: "Programiranje", genitive: "programiranja" },
+  { slug: "talijanski-jezik", name: "Talijanski jezik", genitive: "talijanskog jezika" },
+  { slug: "francuski-jezik", name: "Francuski jezik", genitive: "francuskog jezika" },
+  { slug: "spanjolski-jezik", name: "Španjolski jezik", genitive: "španjolskog jezika" },
+  { slug: "latinski-jezik", name: "Latinski jezik", genitive: "latinskog jezika" },
+  { slug: "povijest", name: "Povijest", genitive: "povijesti" },
+  { slug: "geografija", name: "Geografija", genitive: "geografije" },
+  { slug: "filozofija", name: "Filozofija i logika", genitive: "filozofije i logike" },
+  { slug: "ekonomija", name: "Ekonomija", genitive: "ekonomije" },
+  { slug: "racunovodstvo", name: "Računovodstvo", genitive: "računovodstva" },
+  { slug: "statistika", name: "Statistika", genitive: "statistike" },
+  { slug: "pomoc-u-ucenju", name: "Pomoć u učenju (razredna nastava)", genitive: "razredne nastave" },
 ];
 
 const SUBJECT_BY_SLUG = new Map(SUBJECTS.map((s) => [s.slug, s]));

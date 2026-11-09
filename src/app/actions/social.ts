@@ -34,7 +34,7 @@ export async function submitReview(tutorId: string, rating: number, body: string
       if (p?.email_notifications && u.user?.email)
         await sendEmail({
           to: u.user.email,
-          subject: `Nova recenzija: ${"★".repeat(rating)}`,
+          subject: `Nova recenzija (${rating}/5)`,
           text: `Dobili ste novu recenziju (${rating}/5) na Petica.hr.`,
           link: `/instruktor/${t?.slug}#recenzije`,
         });

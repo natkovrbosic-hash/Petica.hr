@@ -1,5 +1,6 @@
 "use client";
 import { useState, useTransition } from "react";
+import { Star } from "lucide-react";
 import { activatePromoFeatured } from "../actions/billing";
 import { Notice, formatDate } from "@/components/ui";
 
@@ -42,7 +43,7 @@ export function FeaturedBox({
     <section id="istaknuto" className="card scroll-mt-20 border-gold-400 p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold">★ Istaknuti profil</h2>
+          <h2 className="flex items-center gap-2 text-lg font-bold"><Star className="size-5 fill-gold-400 text-gold-500" aria-hidden /> Istaknuti profil</h2>
           <p className="mt-1 text-sm text-slate-600">
             Prikaz na vrhu rezultata pretrage i SEO stranica, oznaka „Istaknuto” i zlatni okvir. Osnovni profil ostaje
             besplatan.

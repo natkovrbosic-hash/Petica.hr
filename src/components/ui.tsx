@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element -- slike profila dolaze iz Supabase Storagea */
+import { Star } from "lucide-react";
 import { subjectName } from "@/lib/subjects";
 
 export function Avatar({ name, src, size = 64 }: { name: string; src?: string | null; size?: number }) {
@@ -36,9 +37,13 @@ export function Stars({ value, count, size = "sm" }: { value: number; count?: nu
   const v = Number(value) || 0;
   return (
     <span className={`inline-flex items-center gap-1 ${size === "lg" ? "text-base" : "text-sm"}`}>
-      <span className="text-gold-500" aria-hidden>
-        {"★★★★★".slice(0, Math.round(v))}
-        <span className="text-slate-300">{"★★★★★".slice(Math.round(v))}</span>
+      <span className="inline-flex" aria-hidden>
+        {[1, 2, 3, 4, 5].map((n) => (
+          <Star
+            key={n}
+            className={`${size === "lg" ? "size-4.5" : "size-3.5"} ${n <= Math.round(v) ? "fill-gold-500 text-gold-500" : "fill-slate-200 text-slate-200"}`}
+          />
+        ))}
       </span>
       {count !== undefined && (
         <span className="text-slate-600">
@@ -53,7 +58,7 @@ export function Stars({ value, count, size = "sm" }: { value: number; count?: nu
 export function FeaturedBadge() {
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-gold-100 px-2 py-0.5 text-xs font-bold text-gold-700">
-      ★ Istaknuto
+      <Star className="size-3 fill-current" aria-hidden /> Istaknuto
     </span>
   );
 }

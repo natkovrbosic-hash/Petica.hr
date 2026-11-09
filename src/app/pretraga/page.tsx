@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SearchFilters } from "@/components/SearchFilters";
 import { TutorCard } from "@/components/TutorCard";
 import { Notice } from "@/components/ui";
@@ -92,7 +93,7 @@ export default async function SearchPage({
             <nav className="flex items-center justify-between pt-2" aria-label="Stranice">
               {effective.str > 1 ? (
                 <Link className="btn-secondary btn-sm" href={`/pretraga?${filtersToQuery({ ...effective, str: effective.str - 1 })}`}>
-                  ← Prethodna
+                  <ChevronLeft className="size-4" aria-hidden /> Prethodna
                 </Link>
               ) : (
                 <span />
@@ -102,7 +103,7 @@ export default async function SearchPage({
               </span>
               {effective.str < pages ? (
                 <Link className="btn-secondary btn-sm" href={`/pretraga?${filtersToQuery({ ...effective, str: effective.str + 1 })}`}>
-                  Sljedeća →
+                  Sljedeća <ChevronRight className="size-4" aria-hidden />
                 </Link>
               ) : (
                 <span />
@@ -110,7 +111,7 @@ export default async function SearchPage({
             </nav>
           )}
           <p className="pt-2 text-xs text-slate-500">
-            Istaknuti profili (oznaka ★) plaćaju oglasni prostor i prikazuju se na vrhu rezultata. Ostali su poredani
+            Istaknuti profili (oznaka „Istaknuto”) plaćaju oglasni prostor i prikazuju se na vrhu rezultata. Ostali su poredani
             prema odabranom sortiranju; „Preporučeno” uzima u obzir prosječnu ocjenu i broj recenzija.
           </p>
         </section>
