@@ -5,7 +5,7 @@ import { detectSubjects } from "@/lib/problem-match";
 import { subjectBySlug } from "@/lib/subjects";
 import { CITIES } from "@/lib/cities";
 
-const EXAMPLES = ["ne kužim razlomke", "lektira za petak", "esej za maturu", "kolokvij iz statistike", "present perfect"];
+const EXAMPLES = ["razlomci i jednadžbe", "lektira i esej", "esej za državnu maturu", "kolokvij iz statistike", "engleska gramatika"];
 
 export function HeroSearch() {
   const router = useRouter();
@@ -26,19 +26,19 @@ export function HeroSearch() {
         go({ q: q.trim(), grad });
       }}
     >
-      <label htmlFor="hero-q" className="label text-slate-600">Napiši svojim riječima</label>
+      <label htmlFor="hero-q" className="label text-slate-600">Opišite gradivo ili poteškoću</label>
       <input
         id="hero-q"
         className="input"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Npr. „ne kužim razlomke” ili „engleski za maturu”"
+        placeholder="npr. razlomci, 5. razred"
         autoComplete="off"
       />
       <div className="mt-2 min-h-8">
         {matches.length > 0 ? (
           <div className="flex flex-wrap items-center gap-1.5 text-sm">
-            <span className="text-slate-600">To je</span>
+            <span className="text-slate-600">Predloženi predmet:</span>
             {matches.map((m) => {
               const s = subjectBySlug(m.subject)!;
               return (
@@ -77,7 +77,7 @@ export function HeroSearch() {
             <option key={c.name} value={c.name} />
           ))}
         </datalist>
-        <button className="btn-primary sm:w-44" type="submit">Pokaži instruktore</button>
+        <button className="btn-primary sm:w-44" type="submit">Pretraži instruktore</button>
       </div>
     </form>
   );

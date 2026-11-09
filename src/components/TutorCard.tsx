@@ -28,7 +28,7 @@ export function TutorCard({ t }: { t: SearchResult }) {
       <div className="flex flex-wrap items-center gap-1.5">
         {t.is_hitno && (
           <span className="inline-flex items-center gap-1 rounded-full bg-board px-2.5 py-1 text-xs font-bold text-gold-400">
-            <Zap className="size-3 fill-current" aria-hidden /> Slobodan sada
+            <Zap className="size-3 fill-current" aria-hidden /> Dostupno odmah
           </span>
         )}
         {t.is_featured && <FeaturedBadge />}

@@ -36,7 +36,7 @@ async function notifyRecipient(conversationId: string, senderId: string, body: s
     await sendEmail({
       to: u.user.email,
       subject: `Nova poruka od: ${senderName}`,
-      text: `${senderName} vam je poslao/la poruku na Petica.hr:\n\n„${body.slice(0, 300)}${body.length > 300 ? "…" : ""}”`,
+      text: `Primili ste novu poruku na Petica.hr.\nPošiljatelj: ${senderName}\n\n„${body.slice(0, 300)}${body.length > 300 ? "…" : ""}”`,
       link: `/poruke/${conversationId}`,
     });
   } catch (e) {

@@ -24,7 +24,7 @@ export function SearchFilters({ f }: { f: Filters }) {
         <label className="flex items-start gap-2 rounded-xl bg-gold-100 p-3 text-sm">
           <input type="checkbox" name="hitno" value="1" defaultChecked={f.hitno} className="mt-0.5 size-4" />
           <span>
-            <strong>Hitno</strong> — instruktori slobodni sada ili u sljedeća 24 sata
+            <strong>Hitne instrukcije</strong> — slobodan termin u sljedeća 24 sata
           </span>
         </label>
         <div>

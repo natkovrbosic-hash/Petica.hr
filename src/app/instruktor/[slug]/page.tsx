@@ -109,7 +109,7 @@ export default async function TutorPage({ params }: Params) {
                   <h1 className="font-display text-[28px] leading-tight font-extrabold">{t.display_name}</h1>
                   {hitno && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-board px-2.5 py-1 text-xs font-bold text-gold-400">
-                      <Zap className="size-3 fill-current" aria-hidden /> Slobodan sada do {timeHM(t.hitno_until!)}
+                      <Zap className="size-3 fill-current" aria-hidden /> Dostupno odmah, do {timeHM(t.hitno_until!)}
                     </span>
                   )}
                   {isFeatured(t) && <FeaturedBadge />}
@@ -227,7 +227,7 @@ export default async function TutorPage({ params }: Params) {
           {t.bookings_enabled && !isSelf && (
             <div id="termin" className="card scroll-mt-20 p-5">
               <div className="mb-3 flex items-baseline justify-between">
-                <h2 className="font-display text-xl font-extrabold">Rezerviraj termin</h2>
+                <h2 className="font-display text-xl font-extrabold">Rezervacija termina</h2>
                 <span className="font-display text-xl font-extrabold">
                   {formatEur(t.price_eur)} <span className="font-sans text-sm font-medium text-slate-600">/ sat</span>
                 </span>
@@ -244,7 +244,7 @@ export default async function TutorPage({ params }: Params) {
           )}
           <div id="kontakt" className="card scroll-mt-20 p-5">
             {t.bookings_enabled && !isSelf ? (
-              <h2 className="font-display text-lg font-extrabold">Ili pošalji poruku</h2>
+              <h2 className="font-display text-lg font-extrabold">Upit instruktoru</h2>
             ) : (
               <p className="font-display text-3xl font-extrabold">
                 {formatEur(t.price_eur)} <span className="font-sans text-base font-medium text-slate-500">/ sat</span>
@@ -279,7 +279,7 @@ export default async function TutorPage({ params }: Params) {
             {formatEur(t.price_eur)} <span className="text-sm font-medium text-slate-500">/ sat</span>
           </p>
           <a href={t.bookings_enabled ? "#termin" : "#kontakt"} className="btn-primary">
-            {t.bookings_enabled ? "Rezerviraj termin" : "Pošalji poruku"}
+            {t.bookings_enabled ? "Rezervirajte termin" : "Pošaljite poruku"}
           </a>
         </div>
       )}

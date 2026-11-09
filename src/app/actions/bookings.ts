@@ -50,7 +50,7 @@ export async function bookLesson(tutorId: string, startsAt: string, mode: string
   await emailTo(
     tutorId,
     `Novi termin: ${dayLong(startsAt)} u ${timeHM(startsAt)}`,
-    `${p?.full_name ?? "Korisnik"} je rezervirao/la termin ${dayLong(startsAt)} u ${timeHM(startsAt)} (${modeName(mode)}).${note ? `\nNapomena: ${note}` : ""}\n\nTermin je potvrđen automatski prema vašem radnom vremenu. Ako ne možete, otkažite ga u „Termini”.`,
+    `Rezerviran je novi termin: ${dayLong(startsAt)} u ${timeHM(startsAt)} (${modeName(mode)}).\nKorisnik: ${p?.full_name ?? "—"}${note ? `\nNapomena: ${note}` : ""}\n\nTermin je potvrđen automatski prema Vašem rasporedu. Ako termin ne možete održati, otkažite ga u odjeljku „Termini”.`,
     "/termini",
   );
   revalidatePath("/termini");
@@ -77,7 +77,7 @@ export async function cancelBooking(bookingId: string, reason: string) {
   return { ok: "Termin je otkazan." };
 }
 
-/** „Slobodan sam sada”: hours = 0 isključuje, -1 = do kraja dana (21:00). */
+/** Hitna dostupnost: hours = 0 isključuje, -1 = do kraja dana (21:00). */
 export async function setHitno(hours: number) {
   const supabase = await createClient();
   const { data: auth } = await supabase.auth.getUser();
@@ -90,12 +90,12 @@ export async function setHitno(hours: number) {
     const offsetMs = zg.getTime() - new Date().getTime();
     zg.setHours(21, 0, 0, 0);
     until = new Date(zg.getTime() - offsetMs);
-    if (until <= new Date()) return { error: "Već je kasno — odaberite broj sati." };
+    if (until <= new Date()) return { error: "Radni dan je završio. Odaberite trajanje u satima." };
   }
   const { error } = await supabase.from("tutors").update({ hitno_until: until?.toISOString() ?? null }).eq("id", auth.user.id);
   if (error) return { error: "Nije uspjelo." };
   revalidatePath("/moj-profil");
-  return { ok: until ? "Uključeno — pojavljujete se pod „Hitno”." : "Isključeno." };
+  return { ok: until ? "Hitna dostupnost je uključena." : "Hitna dostupnost je isključena." };
 }
 
 export async function saveBookingSettings(enabled: boolean, lessonMinutes: number, noticeHours: number) {

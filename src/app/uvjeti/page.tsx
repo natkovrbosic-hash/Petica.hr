@@ -70,7 +70,7 @@ export default function TermsPage() {
           obavijest.
         </li>
         <li>
-          Opcijom „Slobodan sam sada” instruktor označava da je dostupan za hitne instrukcije u navedenom razdoblju, i izvan
+          Opcijom hitne dostupnosti instruktor označava da je dostupan za hitne instrukcije u navedenom razdoblju, i izvan
           redovne dostupnosti.
         </li>
         <li>

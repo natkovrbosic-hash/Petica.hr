@@ -125,7 +125,7 @@ export function BookingWidget({
                 })
               }
             >
-              {pending ? "Rezerviram…" : "Rezerviraj termin"}
+              {pending ? "Rezervacija u tijeku…" : "Potvrdi rezervaciju"}
             </button>
           ) : (
             <Link href={`/prijava?next=${encodeURIComponent(`/instruktor/${slug}`)}`} className="btn-primary w-full">

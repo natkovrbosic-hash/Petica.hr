@@ -60,7 +60,7 @@ export function ContactBox({
       />
       {err && <p className="text-sm text-red-600">{err}</p>}
       <button className="btn-primary w-full" disabled={pending || !text.trim()}>
-        {pending ? "Šaljem…" : "Pošalji poruku"}
+        {pending ? "Slanje…" : "Pošaljite poruku"}
       </button>
       <p className="text-xs text-slate-500">
         Termin, mjesto i cijenu dogovarate izravno s instruktorom. Petica.hr ne naplaćuje instrukcije.

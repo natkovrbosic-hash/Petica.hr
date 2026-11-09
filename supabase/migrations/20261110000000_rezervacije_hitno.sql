@@ -1,4 +1,4 @@
--- Rezervacije termina prema radnom vremenu instruktora + hitne instrukcije („Slobodan sam sada”)
+-- Rezervacije termina prema radnom vremenu instruktora + hitne instrukcije (hitna dostupnost)
 -- Sva vremena dostupnosti su lokalna (Europe/Zagreb); rezervacije se spremaju kao timestamptz.
 
 create extension if not exists btree_gist with schema extensions;
@@ -42,7 +42,7 @@ create policy "bookings: sudionici i admin" on public.bookings
 -- Instruktor smije sam mijenjati postavke rezervacija i hitnosti (tutors_protect ih ne dira).
 
 -- ---------------------------------------------------------------------------
--- Slobodni termini: tjedna dostupnost (+ prozor „Slobodan sam sada”) − potvrđene rezervacije.
+-- Slobodni termini: tjedna dostupnost (+ prozor hitne dostupnosti) − potvrđene rezervacije.
 -- Početak svakih 30 min od početka prozora, trajanje = lesson_minutes. Najava se ne traži dok je instruktor „hitno” slobodan.
 -- ---------------------------------------------------------------------------
 create or replace function public.free_slots(p_tutor uuid, p_days int default 14)
@@ -143,7 +143,7 @@ begin
   returning id into v_conv;
   insert into public.messages (conversation_id, sender_id, body)
   values (v_conv, v_me,
-          'Rezervirao/la sam termin: ' ||
+          'Rezervacija termina: ' ||
           to_char(v_slot.starts_at at time zone 'Europe/Zagreb', 'DD.MM.YYYY. "u" HH24:MI') ||
           case p_mode when 'online' then ' (online)' when 'dolazim' then ' (dolazak kući)' else ' (kod instruktora)' end ||
           coalesce(E'\n' || nullif(btrim(p_note), ''), ''));

@@ -222,7 +222,7 @@ begin
   assert not exists (select 1 from public.free_slots(v_ana, 14) where starts_at = v_slot), 'termin više nije slobodan';
   assert not exists (select 1 from public.free_slots(v_ana, 14) where starts_at = v_slot + interval '30 min'), 'preklapajući termin nije slobodan';
   assert (select count(*) from public.my_bookings()) = 1, 'my_bookings';
-  assert exists (select 1 from public.messages where body like 'Rezervirao/la sam termin%'), 'obavijest u razgovoru';
+  assert exists (select 1 from public.messages where body like 'Rezervacija termina:%'), 'obavijest u razgovoru';
 end $$;
 -- drugi korisnik ne može uzeti isti termin, ne vidi tuđu rezervaciju i ne može je otkazati
 reset role;

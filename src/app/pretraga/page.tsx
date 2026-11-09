@@ -51,13 +51,13 @@ export default async function SearchPage({
       <div className="rounded-b-[24px] bg-board text-chalk">
         <div className="mx-auto max-w-6xl px-4 pt-4 pb-5">
           <h1 className="font-display text-[28px] leading-tight font-extrabold sm:text-4xl">
-            {effective.hitno && <span className="text-gold-400">Hitno · </span>}
+            {effective.hitno && <span className="text-gold-400">Hitne instrukcije · </span>}
             {title}
           </h1>
           <p className="mt-1 text-sm text-brand-100">
             {total === 1 ? "1 instruktor" : `${total} instruktora`}
             {effective.grad ? ` u krugu ${effective.radijus} km` : ""}
-            {effective.hitno ? " · slobodni sada ili u sljedeća 24 sata" : ""}
+            {effective.hitno ? " · slobodan termin u sljedeća 24 sata" : ""}
           </p>
           <div className="mt-4 -mx-4 flex gap-2 overflow-x-auto px-4 pb-1">
             {quick.map((q) => (

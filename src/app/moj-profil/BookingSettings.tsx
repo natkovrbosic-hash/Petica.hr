@@ -19,8 +19,8 @@ export function HitnoBox({ hitnoUntil, approved }: { hitnoUntil: string | null; 
       </h2>
       <p className={`mt-1 text-sm ${active ? "text-brand-100" : "text-slate-600"}`}>
         {active
-          ? `Slobodni ste sada do ${timeHM(hitnoUntil!)}. Prikazujete se pod „Hitno”, a učenici mogu odmah rezervirati termin — i izvan radnog vremena, bez najave.`
-          : "Imate slobodno vrijeme? Uključite „Slobodan sam sada” i pojavite se učenicima kojima instrukcije trebaju danas."}
+          ? `Hitna dostupnost uključena je do ${timeHM(hitnoUntil!)}. Profil se prikazuje među hitnim instrukcijama, a termini se mogu rezervirati odmah, i izvan redovnog rasporeda te bez minimalne najave.`
+          : "Uključite hitnu dostupnost kada imate slobodnog vremena izvan rasporeda. Profil će se prikazivati korisnicima kojima su instrukcije potrebne isti dan."}
       </p>
       {!approved ? (
         <p className="mt-3 text-sm">Dostupno nakon odobrenja profila.</p>
@@ -32,7 +32,7 @@ export function HitnoBox({ hitnoUntil, approved }: { hitnoUntil: string | null; 
             [-1, "Do kraja dana"],
           ].map(([h, label]) => (
             <button key={h} type="button" disabled={pending} onClick={() => run(Number(h))} className="btn-gold btn-sm">
-              {active ? `Produži: ${label}` : `Slobodan sam sada: ${label}`}
+              {active ? `Produži: ${label}` : `Uključi: ${label}`}
             </button>
           ))}
           {active && (

@@ -16,7 +16,7 @@ export default function ForTutorsPage() {
   const promo = launchPromo();
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="text-3xl font-extrabold sm:text-4xl">Držite instrukcije? Neka vas učenici pronađu.</h1>
+      <h1 className="text-3xl font-extrabold sm:text-4xl">Oglasite svoje instrukcije na Petica.hr</h1>
       <p className="mt-3 text-lg text-slate-600">
         Besplatan profil, poruke s roditeljima i učenicima, recenzije — i nikakva provizija na vaše sate.
       </p>

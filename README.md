@@ -15,7 +15,7 @@ Učenik na profilu instruktora odabere dan i termin i rezervacija je odmah potvr
 sprječava ograničenje u bazi, i kod istovremenih rezervacija. Obje strane vide termine u `/termini`, mogu ih
 otkazati i dobivaju email. Plaćanje je i dalje izravno.
 
-**Hitne instrukcije:** instruktor uključi „Slobodan sam sada” (2 h, 4 h ili do kraja dana). Tada se pojavljuje
+**Hitne instrukcije:** instruktor uključi hitnu dostupnost (2 h, 4 h ili do kraja dana). Tada se pojavljuje
 pod „Hitno”, a termini se nude odmah, i izvan radnog vremena i bez najave. Filter „Hitno” prikazuje
 instruktore koji su slobodni sada ili imaju slobodan termin u sljedeća 24 sata.
 
@@ -45,7 +45,7 @@ Mailpit (emailovi za potvrdu registracije i novu lozinku): http://127.0.0.1:5432
 | `roditelj@petica.test` | roditelj (ima razgovor s Ivanom) |
 | `ana@petica.test`, `ivan@petica.test`, `marko@petica.test`… | instruktori (11 odobrenih) |
 | `filip@petica.test` | instruktor koji čeka odobrenje |
-| `josip@petica.test` | instruktor „Slobodan sada” (hitno) |
+| `josip@petica.test` | instruktor s uključenom hitnom dostupnošću |
 
 Svi testni profili imaju `is_test = true`, oznaku **TESTNI PROFIL** i „(TEST)” u imenu. Ne indeksiraju se i nisu
 u sitemapu. Brisanje na produkciji: `delete from auth.users where email like '%@petica.test';`

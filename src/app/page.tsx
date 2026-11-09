@@ -7,13 +7,13 @@ import { FEATURED_PRICE_EUR, SITE_NAME, launchPromo } from "@/lib/config";
 export const revalidate = 3600;
 
 const SUBJECT_HINTS: Record<string, string> = {
-  matematika: "OŠ, SŠ, faks",
-  "hrvatski-jezik": "lektire, esej",
-  "engleski-jezik": "škola, FCE",
-  fizika: "SŠ, faks",
+  matematika: "OŠ, SŠ, fakultet",
+  "hrvatski-jezik": "lektira, esej",
+  "engleski-jezik": "škola, Cambridge ispiti",
+  fizika: "SŠ, fakultet",
   kemija: "OŠ, SŠ",
   biologija: "SŠ, matura",
-  "njemacki-jezik": "škola, Goethe",
+  "njemacki-jezik": "škola, Goethe ispiti",
   programiranje: "Python, Java",
 };
 
@@ -26,20 +26,21 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl gap-8 px-4 pt-8 pb-10 md:grid-cols-[1.1fr_1fr] md:items-center md:pt-14 md:pb-16">
           <div>
             <h1 className="font-display text-[42px] leading-[1.02] font-extrabold sm:text-6xl">
-              Zapelo je?
+              Instrukcije
               <br />
-              <span className="text-gold-400">Nađi nekoga</span>
+              <span className="text-gold-400">za bolje</span>
               <br />
-              tko objasni.
+              rezultate.
             </h1>
             <p className="mt-4 max-w-md text-base text-brand-100 sm:text-lg">
-              Instruktori za školu, maturu i faks — uživo, kod kuće ili online. Rezerviraj termin odmah, bez provizije.
+              Instruktori za osnovnu i srednju školu, državnu maturu i fakultet — uživo, s dolaskom kući ili
+              online. Termin rezervirate izravno prema rasporedu instruktora, bez provizije.
             </p>
             <Link
               href="/pretraga?hitno=1"
               className="mt-5 inline-flex items-center gap-2 rounded-full border-[1.5px] border-gold-400 px-4 py-2.5 text-sm font-semibold text-gold-400 hover:bg-white/10"
             >
-              <Zap className="size-4 fill-current" aria-hidden /> Trebam instrukcije danas
+              <Zap className="size-4 fill-current" aria-hidden /> Hitne instrukcije — termini danas
             </Link>
           </div>
           <HeroSearch />
@@ -52,9 +53,9 @@ export default function HomePage() {
           className="flex items-center justify-between gap-4 rounded-[18px] bg-gold-400 p-5 text-board sm:p-6"
         >
           <span>
-            <span className="block font-display text-2xl font-extrabold sm:text-3xl">Matura dolazi.</span>
+            <span className="block font-display text-2xl font-extrabold sm:text-3xl">Priprema za državnu maturu</span>
             <span className="mt-1 block text-sm sm:text-base">
-              Instruktori za državnu maturu — matematika, hrvatski, engleski i izborni.
+              Matematika (A i B razina), hrvatski jezik, engleski jezik i izborni predmeti.
             </span>
           </span>
           <span className="grid size-11 shrink-0 place-items-center rounded-full bg-board text-gold-400">
@@ -63,7 +64,7 @@ export default function HomePage() {
         </Link>
 
         <section>
-          <h2 className="font-display text-2xl font-extrabold">Što učimo?</h2>
+          <h2 className="font-display text-2xl font-extrabold">Predmeti</h2>
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
             {top.map((s) => (
               <Link key={s.slug} href={`/instrukcije/${s.slug}`} className="card flex flex-col p-4 hover:border-brand-300">
@@ -80,9 +81,9 @@ export default function HomePage() {
 
         <section className="grid gap-3 sm:grid-cols-3">
           {[
-            ["Pronađi", "Filtriraj po predmetu, razini, gradu, cijeni i slobodnom terminu."],
-            ["Rezerviraj", "Slobodni termini računaju se iz radnog vremena instruktora — klik i termin je tvoj."],
-            ["Uči i ocijeni", "Plaćaš izravno instruktoru. Nakon razgovora ostavi recenziju."],
+            ["Pretraga", "Odaberite predmet, razinu, grad, cijenu i željeni termin."],
+            ["Rezervacija", "Slobodni termini izračunavaju se iz rasporeda instruktora; rezervacija se potvrđuje odmah."],
+            ["Instrukcije i recenzija", "Naknadu plaćate izravno instruktoru. Nakon razmjene poruka možete ostaviti recenziju."],
           ].map(([t, d], i) => (
             <div key={t} className="card p-5">
               <span className="font-display text-3xl font-extrabold text-gold-500">{i + 1}</span>
@@ -94,13 +95,13 @@ export default function HomePage() {
 
         <section className="flex flex-col gap-4 rounded-[18px] bg-board p-6 text-chalk sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="font-display text-2xl font-extrabold">Držiš instrukcije?</h2>
+            <h2 className="font-display text-2xl font-extrabold">Za instruktore</h2>
             <p className="mt-1 text-sm text-brand-100">
               Osnovni profil na {SITE_NAME} je besplatan. Istaknuti profil {FEATURED_PRICE_EUR} €/mj
-              {promo.active ? " — sada besplatno tijekom lansiranja!" : "."} Bez provizije na tvoje sate.
+              {promo.active ? " — besplatno tijekom razdoblja lansiranja." : "."} Platforma ne naplaćuje proviziju na održane sate.
             </p>
           </div>
-          <Link href="/registracija?uloga=instruktor" className="btn-gold shrink-0">Postani instruktor</Link>
+          <Link href="/registracija?uloga=instruktor" className="btn-gold shrink-0">Registracija instruktora</Link>
         </section>
       </div>
     </>

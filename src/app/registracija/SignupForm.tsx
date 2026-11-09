@@ -65,8 +65,7 @@ export function SignupForm({ initialRole, next }: { initialRole: "korisnik" | "i
       <label className="flex items-start gap-2 text-sm">
         <input type="checkbox" name="terms" required className="mt-0.5 size-4" />
         <span>
-          Prihvaćam <Link className="link" href="/uvjeti" target="_blank">Uvjete korištenja</Link> i potvrđujem da sam
-          pročitao/la <Link className="link" href="/privatnost" target="_blank">Politiku privatnosti</Link>.
+          Prihvaćam <Link className="link" href="/uvjeti" target="_blank">Uvjete korištenja</Link> i potvrđujem da sam upoznat/a s <Link className="link" href="/privatnost" target="_blank">Politikom privatnosti</Link>.
         </span>
       </label>
       {role === "instruktor" && (
