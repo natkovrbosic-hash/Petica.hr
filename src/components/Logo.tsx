@@ -21,9 +21,9 @@ export function GradeMark({ size = 34 }: { size?: number }) {
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2 rounded-md" aria-label="Instrukcije24.hr, početna stranica">
+    <Link href="/" className="flex items-center gap-2 rounded-md" aria-label="Instruca.hr, početna stranica">
       <GradeMark size={30} />
-      <span className="text-[17px] font-bold tracking-tight text-chalk sm:text-[20px]">Instrukcije24</span>
+      <span className="text-[20px] font-bold tracking-tight text-chalk">Instruca</span>
     </Link>
   );
 }

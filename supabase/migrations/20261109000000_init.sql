@@ -1,4 +1,4 @@
--- Instrukcije24.hr — početna shema
+-- Instruca.hr — početna shema
 -- Sve tablice imaju RLS. Pisanje osjetljivih stupaca (uloga, status odobrenja, istaknutost, ocjene)
 -- dopušteno je samo adminu ili servisnom ključu (webhook, server akcije) — vidi triggere *_protect.
 
