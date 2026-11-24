@@ -1,4 +1,4 @@
-# Instruca.hr — plan
+# Instrux.hr — plan
 
 Marketplace koji povezuje instruktore s učenicima i roditeljima. Platforma **ne** posreduje u plaćanju sati
 (dogovor i plaćanje su izravni, zbog DAC7); naplaćuje se samo opcionalni „Istaknuti profil” instruktoru.

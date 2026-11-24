@@ -47,7 +47,7 @@ export default async function SubjectPage({ params }: Params) {
       </h1>
       <p className="mt-2 max-w-3xl text-slate-600">
         Instruktori {s.genitive} za osnovnu i srednju školu, pripremu za državnu maturu i fakultet — uživo, s dolaskom
-        kući ili online.{avg ? ` Prosječna cijena na Instruca.hr: oko ${avg} € po satu.` : ""} Termin i cijenu dogovarate
+        kući ili online.{avg ? ` Prosječna cijena na Instrux.hr: oko ${avg} € po satu.` : ""} Termin i cijenu dogovarate
         izravno s instruktorom.
       </p>
 

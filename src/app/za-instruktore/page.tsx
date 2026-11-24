@@ -16,7 +16,7 @@ export default function ForTutorsPage() {
   const promo = launchPromo();
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="text-3xl font-bold sm:text-4xl">Oglasite svoje instrukcije na Instruca.hr</h1>
+      <h1 className="text-3xl font-bold sm:text-4xl">Oglasite svoje instrukcije na Instrux.hr</h1>
       <p className="mt-3 text-lg text-slate-600">
         Besplatan profil, poruke s roditeljima i učenicima, rezervacije prema Vašem rasporedu i recenzije. Platforma ne uzima proviziju na održane sate.
       </p>
@@ -51,12 +51,12 @@ export default function ForTutorsPage() {
       </div>
       <div className="mt-8 space-y-3 text-sm text-slate-600">
         <p>
-          <strong>Kako funkcionira plaćanje sati?</strong> Izravno između Vas i učenika. Instruca.hr ne naplaćuje
+          <strong>Kako funkcionira plaćanje sati?</strong> Izravno između Vas i učenika. Instrux.hr ne naplaćuje
           instrukcije, ne uzima proviziju i ne posreduje u plaćanju.
         </p>
         <p>
           <strong>Porezi:</strong> sami ste odgovorni za svoje porezne i zakonske obveze (npr. prijavu prihoda od
-          instrukcija). Instruca.hr samo prodaje oglasni prostor.
+          instrukcija). Instrux.hr samo prodaje oglasni prostor.
         </p>
         <p>
           <strong>Uvjeti:</strong> morate imati najmanje 18 godina. Profil prije objave pregledava naš tim.

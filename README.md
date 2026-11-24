@@ -1,6 +1,6 @@
-# Instruca.hr
+# Instrux.hr
 
-> Platforma je preimenovana iz radnih naziva „Petica.hr” i „Instrukcije24.hr”. Repozitorij se i dalje zove `Petica.hr`, a lokalni Supabase projekt `petica` (interni nazivi, korisnici ih ne vide).
+> Platforma je preimenovana iz radnih naziva „Petica.hr”, „Instrukcije24.hr” i „Instruca.hr”. Repozitorij se i dalje zove `Petica.hr`, a lokalni Supabase projekt `petica` (interni nazivi, korisnici ih ne vide).
 
 Platforma koja povezuje instruktore s učenicima i roditeljima u Hrvatskoj. Princip je kao kod Cehovi.hr:
 platforma **samo prodaje oglasni prostor**. Ne naplaćuje sate instrukcija i ne posreduje u plaćanju između
@@ -41,15 +41,15 @@ Mailpit (emailovi za potvrdu registracije i novu lozinku): http://127.0.0.1:5432
 
 | Email | Uloga |
 |---|---|
-| `admin@instruca.test` | admin |
-| `ucenik@instruca.test` | učenik (ima razgovor i recenziju s Anom) |
-| `roditelj@instruca.test` | roditelj (ima razgovor s Ivanom) |
-| `ana@instruca.test`, `ivan@instruca.test`, `marko@instruca.test`… | instruktori (11 odobrenih) |
-| `filip@instruca.test` | instruktor koji čeka odobrenje |
-| `josip@instruca.test` | instruktor s uključenom hitnom dostupnošću |
+| `admin@instrux.test` | admin |
+| `ucenik@instrux.test` | učenik (ima razgovor i recenziju s Anom) |
+| `roditelj@instrux.test` | roditelj (ima razgovor s Ivanom) |
+| `ana@instrux.test`, `ivan@instrux.test`, `marko@instrux.test`… | instruktori (11 odobrenih) |
+| `filip@instrux.test` | instruktor koji čeka odobrenje |
+| `josip@instrux.test` | instruktor s uključenom hitnom dostupnošću |
 
 Svi testni profili imaju `is_test = true`, oznaku **TESTNI PROFIL** i „(TEST)” u imenu. Ne indeksiraju se i nisu
-u sitemapu. Brisanje na produkciji: `delete from auth.users where email like '%@instruca.test';`
+u sitemapu. Brisanje na produkciji: `delete from auth.users where email like '%@instrux.test';`
 
 ## Testovi
 
@@ -87,9 +87,9 @@ update public.profiles set role = 'admin'
 ## Objava (produkcija)
 
 1. Supabase projekt (regija EU): `npx supabase link` i `npx supabase db push` (bez seeda).
-   U Auth → URL Configuration postavite Site URL i redirect `https://instruca.hr/**`. Uključite potvrdu emaila i SMTP.
+   U Auth → URL Configuration postavite Site URL i redirect `https://instrux.hr/**`. Uključite potvrdu emaila i SMTP.
 2. Hosting (npr. Vercel): varijable iz `.env.example`.
-3. Stripe webhook prema `https://instruca.hr/api/stripe/webhook`.
+3. Stripe webhook prema `https://instrux.hr/api/stripe/webhook`.
 4. **Pravne stranice (`/uvjeti`, `/privatnost`, `/kolacici`) su NACRTI i mora ih pregledati pravnik.**
 
 ## Što još nije napravljeno

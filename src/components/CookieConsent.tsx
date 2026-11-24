@@ -2,10 +2,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// Privola za kolačiće. Instruca.hr trenutno koristi samo nužne kolačiće (prijava, ova privola).
+// Privola za kolačiće. Instrux.hr trenutno koristi samo nužne kolačiće (prijava, ova privola).
 // Kad se doda analitika, učitavati je samo ako hasConsent("analitika") vrati true.
 
-const KEY = "instruca_privola";
+const KEY = "instrux_privola";
 type Consent = { nuzni: true; analitika: boolean; datum: string };
 
 export function hasConsent(kind: "analitika") {
@@ -42,8 +42,8 @@ export function CookieConsent() {
       setDetails(true);
       setOpen(true);
     };
-    window.addEventListener("instruca:kolacici", reopen);
-    return () => window.removeEventListener("instruca:kolacici", reopen);
+    window.addEventListener("instrux:kolacici", reopen);
+    return () => window.removeEventListener("instrux:kolacici", reopen);
   }, []);
 
   if (!open) return null;
@@ -88,7 +88,7 @@ export function CookieConsent() {
 
 export function CookieSettingsLink() {
   return (
-    <button className="hover:text-brand-700" onClick={() => window.dispatchEvent(new Event("instruca:kolacici"))}>
+    <button className="hover:text-brand-700" onClick={() => window.dispatchEvent(new Event("instrux:kolacici"))}>
       Postavke kolačića
     </button>
   );
